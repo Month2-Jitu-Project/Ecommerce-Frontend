@@ -1,0 +1,39 @@
+<!-- PRODUCT CONTAINER -->
+<div class="product-container">
+    <div class="product" *ngFor="let product of products">
+        <div class="img-container">
+            <img loading="lazy" src="{{ product.productImage }}" alt="product image" class="product-img">
+            <!-- PRODUCT CARD ICONS -->
+            <div class="icon-container">
+                <a class="addToCartBtn btn" (click)="addProductToCart()">
+                    <fa-icon [icon]="cartIcon" class="icon"></fa-icon>
+                </a>
+                <a class="deleteBtn btn" (click)="deleteProduct()">
+                    <fa-icon [icon]="deleteIcon" class="icon"></fa-icon>
+                </a>
+                <a class="favorites btn" (click)="addToFavorites()">
+                    <fa-icon [icon]="heartIcon" class="icon"></fa-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <h2 class="product-title">
+                {{ product.productTitle }}
+                <fa-icon [icon]="ellipsisIcon"></fa-icon>
+            </h2>
+
+            <h3 class="product-price">
+                {{ product.productPrice | currency }}
+                <span class="previous-price">
+                    {{ product.productPrice + 500 | currency }}
+                </span>
+            </h3>
+
+            <p class="product-description">
+                {{ (product.productDescription.length > 90)? (product.productDescription |
+                slice:0:90)+'...':(product.productDescription) }}
+            </p>
+        </div>
+    </div>
+</div>

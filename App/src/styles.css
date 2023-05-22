@@ -1,0 +1,33 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+/* COLOR PALETTE */
+:root {
+    --folly: #F73859ff;
+    --salmon-pink: #FA94A6ff;
+    --white: #FFFFFFff;
+    --cherry-blossom-pink: #FBB6C2ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    height: 150vh;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3c404b;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--folly);
+}
