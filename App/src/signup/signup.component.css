@@ -1,0 +1,97 @@
+/*
+*------------------
+* SIGN UP PRODUCT FORM 
+*------------------
+*/
+.sign-up-form {
+    position: absolute;
+    z-index: 10;
+    top: 10%;
+    right: 10%;
+    background: var(--white);
+    border-radius: .5rem;
+    border: 1px solid var(--folly);
+    border-top: 12px solid var(--folly);
+    box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.3);
+    width: 25rem;
+    padding: 2rem;
+    transform: scale(0);
+    transform-origin: top center;
+    transition: .3s all ease;
+}
+
+.sign-up-form .signup-form .signup-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--folly);
+    margin-bottom: 1.9rem;
+}
+
+.sign-up-form .signup-form .signup-form-header span {
+    font-size: 1.7rem;
+    padding: .6rem;
+    border-radius: 3px;
+    background: var(--folly);
+    box-shadow: 0 .3rem .4rem 0 rgba(0, 0, 0, .4);
+    color: var(--white);
+    display: inline-block;
+    transform: rotate(-15deg);
+}
+
+/*
+*--------------------
+* CLOSE FORM BUTTON 
+*-------------------
+*/
+.close-form-btn {
+    background: var(--folly);
+    color: var(--white);
+    clip-path: circle(40% at 50% 50%);
+    padding: .7rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.sign-up-form input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--folly);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: .3rem;
+    margin-bottom: 2rem;
+}
+
+.sign-up-form label {
+    font-weight: 700;
+    color: var(--folly);
+}
+
+.sign-up-form input:focus {
+    outline: none;
+    animation: border-glow 1s infinite;
+}
+
+.user-input-wrp {
+    position: relative;
+    width: 100%;
+}
+
+.user-input-wrp .input-text {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #F73859ff;
+    color: #505050;
+    box-shadow: none !important;
+}
+
+.first-name {
+    color: #505050;
+}
+
+.active {
+    transform: scale(1);
+}

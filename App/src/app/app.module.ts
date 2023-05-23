@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductComponent } from 'src/product/product.component';
+import { SignUpComponent } from 'src/signup/signup.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -19,14 +20,15 @@ import { ProductComponent } from 'src/product/product.component';
   // APP
   declarations: [
     AppComponent,
-    ProductComponent 
+    ProductComponent,
+    SignUpComponent
   ],
   // ADDS OTHER MODULES THAT PROVIDE 
   // FUNCTIONALITY NEEDED BY THE APP
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   // THE ENTRY POINT COMPONENT FOR
