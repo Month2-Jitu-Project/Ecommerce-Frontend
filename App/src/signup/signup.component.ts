@@ -52,20 +52,19 @@ export class SignUpComponent {
 
   // DEFAULT FORM INPUT VALUES
   defaultParams = {
-    email: 'Enter your email...',
-    password: 'Enter your password...',
-    firstName: 'Enter your first name',
-    lastName: 'Enter your last name...',
-    phoneNumber: 'Enter your phone number...',
+    email: 'Email address...',
+    password: 'Password...',
+    firstName: 'First name...',
+    lastName: 'Last name...',
+    phoneNumber: 'Phone number...',
   };
 
   ngAfterViewInit() {
     console.log('Form initialized!');
   }
 
-  closeForm() {
-    const signUpForm = this.elementRef.nativeElement;
-    signUpForm.classList.remove('active');
+  closeSignUpForm() {
+    this.sharedService.setActive(false);
   }
 
   signUp() {

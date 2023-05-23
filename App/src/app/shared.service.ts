@@ -16,8 +16,4 @@ export class SharedService {
   setActive(active: boolean): void {
     this.isActiveSubject.next(active);
   }
-
-  //////////////////////////////////
-  /// METHOD TO GET ACTIVE STATE ///
-  //////////////////////////////////
 }
