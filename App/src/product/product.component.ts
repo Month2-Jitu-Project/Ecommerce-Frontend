@@ -8,7 +8,7 @@ import { ProductModel } from 'src/product.model';
 @Component({
   selector: 'product', // CUSTOM HTML SELECTOR 
   templateUrl: './product.component.html', // LINK TO HTML 
-  styleUrls: ['./product.component.css']  // LINK TO CSS
+  styleUrls: ['./product.component.css']  // LINK TO CSS  
 })
 export class ProductComponent {
   // LOGIC GOES HERE

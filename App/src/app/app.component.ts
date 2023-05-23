@@ -1,21 +1,8 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 // IMPORT FONTAWESOME ICONS
-import {
-  faHome,
-  faPlusCircle,
-  faCartShopping,
-  faArrowCircleUp,
-  faLock,
-  faClose,
-} from '@fortawesome/free-solid-svg-icons';
-import { authenticationService } from 'src/services/authentication.service';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose } from '@fortawesome/free-solid-svg-icons';
+import { SharedService } from './shared.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -24,15 +11,19 @@ import { authenticationService } from 'src/services/authentication.service';
   styleUrls: ['./app.component.css'], // LINK TO CSS
 })
 export class AppComponent implements AfterViewInit {
-  constructor(private authenticationService: authenticationService) {}
-
-  triggerButtonClick(): void {
-    this.authenticationService.emitButtonClick();
-  }
-
   // SELECT ADD PRODUCT FORM : Note @ViewChild can only select one Element
   @ViewChild('addProductForm', { static: false })
   elementRef!: ElementRef;
+  
+  // INJECT SHARED SERVICE
+  constructor(private sharedService: SharedService) {}
+
+  /////////////////////////////////////
+  /// METHOD TO UPDATE ACTIVE STATE ///
+  /////////////////////////////////////
+  setSignUpActive(): void {
+    this.sharedService.setActive(true);
+  }
 
   // LOGO IMAGE URL
   logoImageURL = './assets/images/png/logo_color.png';
@@ -54,7 +45,7 @@ export class AppComponent implements AfterViewInit {
     productDescription: 'Type product description here...',
   };
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   // METHOD FOR CLOSING ALL FORMS
   closeForm() {

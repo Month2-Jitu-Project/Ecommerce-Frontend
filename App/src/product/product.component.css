@@ -85,6 +85,47 @@
     clip-path: circle(45% at 50% 50%);
 }
 
+.icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.product-details {
+    padding: 1.5rem;
+}
+
+.product-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #575757;
+}
+
+.product-price {
+    font-size: 1rem;
+    color: var(--folly);
+}
+
+.product-price span {
+    color: #6b6b6b;
+    font-weight: 500;
+    font-size: .8rem;
+    text-decoration: line-through;
+}
+
+.product-description {
+    font-weight: 600;
+    font-size: .8rem;
+    padding-top: .9rem;
+    color: #6b6b6b;
+}
+
+
+/*
+*-------------
+* ANIMATIONS 
+*-------------
+*/
 /**
  * ----------------------------------------
  * animation heartbeat
@@ -169,37 +210,17 @@
 }
 
 
-.icon:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
 
-.product-details {
-    padding: 1.5rem;
-}
 
-.product-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #575757;
-}
-
-.product-price {
-    font-size: 1rem;
-    color: var(--folly);
-}
-
-.product-price span {
-    color: #6b6b6b;
-    font-weight: 500;
-    font-size: .8rem;
-    text-decoration: line-through;
-}
-
-.product-description {
-    font-weight: 600;
-    font-size: .8rem;
-    padding-top: .9rem;
-    color: #6b6b6b;
+/*
+*--------------
+* MEDIA QUERIES 
+*---------------
+*/
+@media (max-width: 768px) {
+    .product-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 }

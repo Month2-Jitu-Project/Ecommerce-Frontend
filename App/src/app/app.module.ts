@@ -6,8 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProductComponent } from 'src/product/product.component';
-import { SignUpComponent } from 'src/signup/signup.component';
+import { ProductComponent } from '../product/product.component';
+import { SignUpComponent } from '../signup/signup.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -33,6 +33,6 @@ import { SignUpComponent } from 'src/signup/signup.component';
   providers: [],
   // THE ENTRY POINT COMPONENT FOR
   // STARTING THE APP
-  bootstrap: [AppComponent] 
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

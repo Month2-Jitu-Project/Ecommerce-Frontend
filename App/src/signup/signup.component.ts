@@ -16,29 +16,28 @@ import {
   faLock,
   faClose,
 } from '@fortawesome/free-solid-svg-icons';
-import { authenticationService } from 'src/services/authentication.service';
+import { SharedService } from 'src/app/shared.service';
+
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
-
 @Component({
   selector: 'signup', // CUSTOM HTML SELECTOR
   templateUrl: './signup.component.html', // LINK TO HTML
   styleUrls: ['./signup.component.css'], // LINK TO CSS
 })
-export class SignUpComponent implements OnInit {
-  // SELECT ADD SIGN UP FORM : Note @ViewChild can only select one Element
-  @ViewChild('signUpForm', { static: false })
+export class SignUpComponent {
+  @ViewChild('SignUpForm', { static: false })
   elementRef!: ElementRef;
+  // SET isActive STATE TO false
+  isActive: boolean = false;
+  // INJECT SHARED SERVICE
+  constructor(private sharedService: SharedService) { }
 
-  constructor(private authenticationService: authenticationService) {}
-
-  ngOnInit() : void {
-    this.authenticationService.buttonClicked.subscribe(()=>{
-      this.elementRef.nativeElement.click();
+  ngOnInit(): void {
+    this.sharedService.isActive$.subscribe(active => {
+      this.isActive = active;
     });
-
   }
-
   // LOGO IMAGE URL
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';
@@ -67,15 +66,6 @@ export class SignUpComponent implements OnInit {
   closeForm() {
     const signUpForm = this.elementRef.nativeElement;
     signUpForm.classList.remove('active');
-  }
-
-  toggleSignUpForm() {
-    console.log('Form toggled...');
-    // SELECT SIGN UP FORM
-    const signUpForm = this.elementRef.nativeElement;
-    console.log(signUpForm);
-    signUpForm.classList.toggle('active');
-    alert('sign up form clicked');
   }
 
   signUp() {

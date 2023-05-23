@@ -1,75 +1,69 @@
-      <!-- POP UP FORM -->
-  <div class="sticky">
-    <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
-    <div class="form-container sign-up-form" #signUpForm>
+<!-- POP UP FORM -->
+<div class="sticky">
+  <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
+  <div class="form-container sign-up-form" #signUpForm [ngClass]="{ active: isActive }">
 
-      <!-- SIGN UP FORM -->
-      <form action="#" class="signup-form active">
-        
-        <div class="signup-form-header">
-          <!-- FORM TITLE -->
-          <h2 class="signup-form-title">
-            <span>
-              Sign
-            </span>
-              Up
-          </h2>
+    <!-- SIGN UP FORM -->
+    <form action="#" class="form">
 
-          <!-- CLOSE FORM BUTTON -->
-          <a class="close-form-btn" (click)="closeForm()">
-           <fa-icon [icon]="closeIcon"></fa-icon>
-          </a>
+      <div class="form-header">
+        <!-- FORM TITLE -->
+        <h2 class="form-title">
+          <span>
+            Sign
+          </span>
+          Up
+        </h2>
+
+        <!-- CLOSE FORM BUTTON -->
+        <a class="close-form-btn" (click)="closeForm()">
+          <fa-icon [icon]="closeIcon"></fa-icon>
+        </a>
+      </div>
+
+      <div class="form-input">
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" required>
+          <span class="floating-label">
+            {{ defaultParams.email }}
+          </span>
         </div>
 
-        <div class="signup-form-input">
-            <label for="lastName">
-                Email
-            </label>
-          <div class="user-input-wrp">
-            <input type="text" class="input-text" required>
-            <span class="floating-label">
-              {{ defaultParams.email }}
-            </span>
-          </div>
-
-          <div class="user-input-wrp">
-            <input type="text" class="input-text capitalize" required>
-            <span class="floating-label">
-              {{ defaultParams.password }}
-            </span>
-          </div>
-          <label for="firstName">
-            First Name
-          </label>
-          <input type="text" value="{{ defaultParams.firstName}}" class="first-name">
-
-          <div class="user-input-wrp">
-            <label for="lastName">
-                Last Name
-            </label>
-            <input type="text" class="input-text" required>
-            <span class="floating-label">
-              {{ defaultParams.lastName }}
-            </span>
-          </div>
-
-          <div class="user-input-wrp">
-            <label for="phoneNumber">
-                Phone Number
-            </label>
-            <input type="text" class="input-text" required>
-            <span class="floating-label">
-              {{ defaultParams.phoneNumber }}
-            </span>
-          </div>
-          <!-- SIGN UP BUTTON -->
-          <button class="signUpBtn" (click)="signUp()">
-            <fa-icon [icon]="upIcon"></fa-icon>
-            Sign Up
-          </button>
+        <div class="user-input-wrp">
+          <input type="password" class="input-text" required>
+          <span class="floating-label">
+            {{ defaultParams.password }}
+          </span>
         </div>
 
-      </form>
-    </div>
-    <!--=====================================-->
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" required>
+          <span class="floating-label">
+            {{ defaultParams.firstName}}
+          </span>
+        </div>
+
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" required>
+          <span class="floating-label">
+            {{ defaultParams.lastName }}
+          </span>
+        </div>
+
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" required>
+          <span class="floating-label">
+            {{ defaultParams.phoneNumber }}
+          </span>
+        </div>
+        <!-- SIGN UP BUTTON -->
+        <button class="signUpBtn" (click)="signUp()">
+          <fa-icon [icon]="upIcon"></fa-icon>
+          Sign Up
+        </button>
+      </div>
+
+    </form>
   </div>
+  <!--=====================================-->
+</div>

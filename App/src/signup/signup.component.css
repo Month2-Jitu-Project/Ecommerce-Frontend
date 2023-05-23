@@ -1,7 +1,16 @@
+/* sticky ELEMENT: make an element "stick" to a specific position on the screen as the user scrolls */
+.sticky {
+    position: fixed;
+    top: 10%;
+    right: 33%;
+    z-index: 10;
+    animation: hover 2.5s infinite;
+}
+
 /*
-*------------------
+*----------------------
 * SIGN UP PRODUCT FORM 
-*------------------
+*----------------------
 */
 .sign-up-form {
     position: absolute;
@@ -20,7 +29,7 @@
     transition: .3s all ease;
 }
 
-.sign-up-form .signup-form .signup-form-header {
+.sign-up-form .form .form-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,7 +37,7 @@
     margin-bottom: 1.9rem;
 }
 
-.sign-up-form .signup-form .signup-form-header span {
+.sign-up-form .form .form-header span {
     font-size: 1.7rem;
     padding: .6rem;
     border-radius: 3px;
@@ -53,6 +62,7 @@
     font-size: 1.5rem;
 }
 
+
 .sign-up-form input {
     width: 100%;
     border: none;
@@ -64,15 +74,16 @@
     margin-bottom: 2rem;
 }
 
+.sign-up-form input:focus {
+    outline: none;
+    animation: border-glow 1s infinite;
+}
+
 .sign-up-form label {
     font-weight: 700;
     color: var(--folly);
 }
 
-.sign-up-form input:focus {
-    outline: none;
-    animation: border-glow 1s infinite;
-}
 
 .user-input-wrp {
     position: relative;
@@ -88,10 +99,134 @@
     box-shadow: none !important;
 }
 
-.first-name {
-    color: #505050;
+.user-input-wrp .floating-label {
+    position: absolute;
+    pointer-events: none;
+    top: 7px;
+    left: 10px;
+    transition: 0.2s ease all;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: #9c9c9c;
 }
 
-.active {
+.user-input-wrp input:focus~.floating-label,
+.user-input-wrp input:not(:focus):valid~.floating-label {
+    top: -15px;
+    left: 10px;
+    font-size: 13px;
+    opacity: 1;
+    color: var(--folly);
+}
+
+.signUpBtn {
+    width: 100%;
+    border: none;
+    border-radius: 24px 0;
+    padding: 1rem;
+    background: linear-gradient(to right, #F73859ff, rgb(255, 17, 56));
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: .4s all ease;
+}
+
+.signUpBtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+/*
+*--------------------------------
+*SIGN UP FORM : ACTIVE STATE
+*--------------------------------
+*/
+.sign-up-form.active {
     transform: scale(1);
 }
+
+
+/********************************
+********** ANIMATIONS **********
+*******************************/
+
+
+
+/*
+*----------------------------------
+* HOVER ANIMATION FOR HERO SECTION 
+*----------------------------------
+*/
+@-webkit-keyframes hover {
+    0% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+
+    100% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes hover {
+    0% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+
+    50% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+    }
+
+    100% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+}
+
+/* 
+*--------------------------
+* INPUT BORDER DOTTOM GLOW 
+*--------------------------
+*/
+@-webkit-keyframes border-glow {
+    0% {
+        border-bottom: 1px solid #F73859ff;
+    }
+
+    50% {
+        border-bottom: 1px solid rgba(247, 56, 88, 0.4);
+    }
+
+    100% {
+        border-bottom: 1px solid #F73859ff;
+    }
+}
+
+@keyframes border-glow {
+    0% {
+        border-bottom: 1px solid #F73859ff;
+    }
+
+    50% {
+        border-bottom: 1px solid rgba(247, 56, 88, 0.4);
+    }
+
+    100% {
+        border-bottom: 1px solid #F73859ff;
+    }
+}
+

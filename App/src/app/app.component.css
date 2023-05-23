@@ -99,7 +99,7 @@ header {
 *------------------
 */
 
-/* sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls */
+/* sticky ELEMENT: make an element "stick" to a specific position on the screen as the user scrolls */
 .sticky {
     position: fixed;
     top: 15%;
@@ -619,5 +619,31 @@ header {
 
     100% {
         border-bottom: 1px solid #F73859ff;
+    }
+}
+
+
+
+/*
+*--------------
+* MEDIA QUERIES 
+*---------------
+*/
+@media (max-width: 768px) {
+    .grid-wrapper {
+        margin: auto;
+        max-width: 60%;
+    }
+
+    .logo {
+        width: 50%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        max-width: 500px;
     }
 }
