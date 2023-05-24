@@ -15,24 +15,22 @@ import { SignUpComponent } from '../signup/signup.component';
 // DENOTES ALL RELEVANT AND NECESSARY 
 // DEPENDENCIES
 @NgModule({
-  // MARK OUT WHICH COMPONENTS AND 
-  // DIRECTIVES CAN BE USED WITHIN THE
-  // APP
-  declarations: [
-    AppComponent,
-    ProductComponent,
-    SignUpComponent
-  ],
-  // ADDS OTHER MODULES THAT PROVIDE 
-  // FUNCTIONALITY NEEDED BY THE APP
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-  ],
-  providers: [],
-  // THE ENTRY POINT COMPONENT FOR
-  // STARTING THE APP
-  bootstrap: [AppComponent]
+    // MARK OUT WHICH COMPONENTS AND 
+    // DIRECTIVES CAN BE USED WITHIN THE
+    // APP
+    declarations: [
+        AppComponent,
+        SignUpComponent
+    ],
+    providers: [],
+    // THE ENTRY POINT COMPONENT FOR
+    // STARTING THE APP
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        ProductComponent
+    ]
 })
 export class AppModule { }

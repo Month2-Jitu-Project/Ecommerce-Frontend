@@ -1,5 +1,7 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // ICONS
 import { faTrashCan, faPlus, faCartShopping, faHeart, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { ProductModel } from 'src/product.model';
@@ -8,7 +10,9 @@ import { ProductModel } from 'src/product.model';
 @Component({
   selector: 'product', // CUSTOM HTML SELECTOR 
   templateUrl: './product.component.html', // LINK TO HTML 
-  styleUrls: ['./product.component.css']  // LINK TO CSS  
+  styleUrls: ['./product.component.css'],  // LINK TO CSS  
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule]
 })
 export class ProductComponent {
   // LOGIC GOES HERE
