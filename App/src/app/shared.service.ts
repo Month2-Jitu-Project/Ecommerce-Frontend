@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 // THE @Injectable DECORATOR INDICATES 
 // THAT THE EXPORTED CLASS IS A SERVICE
@@ -7,13 +8,37 @@ import { Subject } from 'rxjs';
 })
 export class SharedService {
   // DEFINE A PROPERTY TO HOLD THE ACTIVE STATE
-  private isActiveSubject = new Subject<boolean>();
-  isActive$ = this.isActiveSubject.asObservable();
+  private signInFormSubject = new Subject<boolean>();
+  signInForm$ = this.signInFormSubject.asObservable();
 
-  //////////////////////////////////
-  /// METHOD TO SET ACTIVE STATE ///
-  //////////////////////////////////
-  setActive(active: boolean): void {
-    this.isActiveSubject.next(active);
+  private signUpFormSubject = new Subject<boolean>();
+  signUpForm$ = this.signUpFormSubject.asObservable();
+
+
+  //////////////////////////////
+  /// METHODS TO OPEN FORMS ////
+  //////////////////////////////
+  openSignInForm(): void {
+    this.signInFormSubject.next(true);
+    this.signUpFormSubject.next(false);
   }
+
+  openSignUpForm(): void {
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(true);
+  }
+
+   //////////////////////////////
+  /// METHODS TO CLOSE FORMS ///
+  //////////////////////////////
+  closeSignInForm(): void {
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
+  }
+
+  closeSignUpForm(): void {
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
+  }
+  
 }

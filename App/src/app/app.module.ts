@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductComponent } from '../product/product.component';
 import { SignUpComponent } from '../signup/signup.component';
+import { SignInComponent } from 'src/signin/signin.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
