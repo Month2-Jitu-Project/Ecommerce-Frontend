@@ -59,6 +59,9 @@ export class SignInComponent {
     this.sharedService.closeSignInForm();
   }
 
+  ///////////////////////////////////
+  /// METHOD FOR SIGNING IN USERS ///
+  ///////////////////////////////////
   signIn() {
     console.log(this);
   }
