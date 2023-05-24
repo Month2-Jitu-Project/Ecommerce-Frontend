@@ -20,8 +20,7 @@ import { SignInComponent } from 'src/signin/signin.component';
     // DIRECTIVES CAN BE USED WITHIN THE
     // APP
     declarations: [
-        AppComponent,
-        SignUpComponent
+        AppComponent
     ],
     providers: [],
     // THE ENTRY POINT COMPONENT FOR
@@ -31,7 +30,9 @@ import { SignInComponent } from 'src/signin/signin.component';
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
-        ProductComponent
+        ProductComponent,
+        SignInComponent,
+        SignUpComponent
     ]
 })
 export class AppModule { }

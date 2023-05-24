@@ -1,7 +1,7 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
-import {
-  Component
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
 import {
   faHome,
@@ -19,6 +19,8 @@ import { SharedService } from 'src/app/shared.service';
   selector: 'signup', // CUSTOM HTML SELECTOR
   templateUrl: './signup.component.html', // LINK TO HTML
   styleUrls: ['./signup.component.css'], // LINK TO CSS
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule]
 })
 export class SignUpComponent {
   // SET isActive STATE TO false
