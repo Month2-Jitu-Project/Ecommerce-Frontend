@@ -1,8 +1,6 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
 import {
-  Component,
-  ViewChild,
-  ElementRef
+  Component
 } from '@angular/core';
 // IMPORT FONTAWESOME ICONS
 import {
@@ -23,15 +21,13 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./signup.component.css'], // LINK TO CSS
 })
 export class SignUpComponent {
-  @ViewChild('SignUpForm', { static: false })
-  elementRef!: ElementRef;
   // SET isActive STATE TO false
   isActive: boolean = false;
   // INJECT SHARED SERVICE
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.sharedService.isActive$.subscribe(active => {
+    this.sharedService.signUpForm$.subscribe(active => {
       this.isActive = active;
     });
   }
@@ -61,7 +57,7 @@ export class SignUpComponent {
   }
 
   closeSignUpForm() {
-    this.sharedService.setActive(false);
+    this.sharedService.closeSignUpForm();
   }
 
   signUp() {

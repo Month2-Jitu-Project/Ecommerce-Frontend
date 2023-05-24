@@ -22,7 +22,11 @@ export class AppComponent implements AfterViewInit {
   /// METHOD TO UPDATE ACTIVE STATE ///
   /////////////////////////////////////
   setSignUpActive(): void {
-    this.sharedService.setActive(true);
+    this.sharedService.openSignUpForm();
+  }
+
+  setSignInActive(): void {
+    this.sharedService.openSignInForm();
   }
 
   // LOGO IMAGE URL
