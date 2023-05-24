@@ -1,0 +1,49 @@
+<!-- POP UP FORM -->
+<div class="sticky">
+    <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
+    <div class="form-container sign-in-form" [ngClass]="{ active: isActive }">
+  
+      <!-- SIGN UP FORM -->
+      <form action="#" class="form">
+  
+        <div class="form-header">
+          <!-- FORM TITLE -->
+          <h2 class="form-title">
+            <span>
+              Sign
+            </span>
+            In
+          </h2>
+  
+          <!-- CLOSE FORM BUTTON -->
+          <a class="close-form-btn" (click)="closeSignInForm()">
+            <fa-icon [icon]="closeIcon"></fa-icon>
+          </a>
+        </div>
+  
+        <div class="form-input">
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.email }}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="password" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.password }}
+            </span>
+          </div>
+
+          <!-- SIGN UP BUTTON -->
+          <button class="signInBtn" (click)="signIn()">
+            <fa-icon [icon]="upIcon"></fa-icon>
+            Sign In
+          </button>
+        </div>
+  
+      </form>
+    </div>
+    <!--=====================================-->
+  </div>
