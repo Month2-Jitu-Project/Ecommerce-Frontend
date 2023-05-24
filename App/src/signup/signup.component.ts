@@ -2,10 +2,7 @@
 import {
   Component,
   ViewChild,
-  ElementRef,
-  Renderer2,
-  AfterViewInit,
-  OnInit,
+  ElementRef
 } from '@angular/core';
 // IMPORT FONTAWESOME ICONS
 import {
