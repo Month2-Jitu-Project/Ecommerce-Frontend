@@ -57,7 +57,7 @@
 
           <!-- CLOSE FORM BUTTON -->
           <a class="close-form-btn" (click)="closeForm()">
-           <fa-icon [icon]="closeIcon"></fa-icon>
+            <fa-icon [icon]="closeIcon"></fa-icon>
           </a>
         </div>
 
@@ -95,10 +95,10 @@
 
       </form>
     </div>
-    <!--=====================================-->
   </div>
+  <!--================ FORM END ================-->
 
-  <a class="cta">
+  <div class="cta">
     <!-- SIGN UP BUTTON -->
     <a class="sign-up-btn" (click)="setSignUpActive()">
       Sign Up
@@ -108,7 +108,19 @@
       Sign In
       <fa-icon [icon]="lockIcon"></fa-icon>
     </button>
-  </a>
+  </div>
+
+  <!-- MOBILE ACTIONS -->
+  <div class="mobile-actions">
+    <!-- TOGGLE ADD PRODUCT FORM -->
+    <a class="plus-icon">
+      <fa-icon [icon]="plusIcon" (click)="togglePopUp()"></fa-icon>
+    </a>
+    <!-- TOGGLE SIDE NAVIGATION -->
+    <a class="ellipsis-icon">
+      <fa-icon [icon]="ellipsisIcon"></fa-icon>
+    </a>
+  </div>
 </header>
 
 <!-- SIGN UP FORM  -->
@@ -130,7 +142,11 @@
 <section class="product-container">
   <!-- WELCOME MESSAGE TILE -->
   <h2 class="welcome-title">
-    "Embrace the joy of <span>Online Shopping"</span>
+    "Embrace the joy of
+    <span>
+      Online Shopping"
+      <fa-icon [icon]="bagIcon"></fa-icon>
+    </span>
   </h2>
   <div class="products-wrapper">
     <div class="products">

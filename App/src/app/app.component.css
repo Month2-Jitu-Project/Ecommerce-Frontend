@@ -214,6 +214,29 @@ header {
     color: #9c9c9c;
 }
 
+ /*
+ * ---------------------------------------------------------
+  .user-input-wrp input:focus~.floating-label: 
+
+ This selector targets the ".floating-label" element that comes after the focused input element within the ".user-input-wrp" container. It applies the following styles 
+
+top: -15px; => Moves the floating label 15 pixels above its original position.
+
+left: 10px; => Moves the floating label 10 pixels to the left of its original position.
+
+font-size: 13px; => Sets the font size of the floating label to 13 pixels.
+
+opacity: 1; => Makes the floating label fully visible.
+
+color: var(--folly); => Sets the text color of the floating label using a custom CSS variable named "--folly".
+
+
+.user-input-wrp input:not(:focus):valid~.floating-label:
+
+This selector targets the ".floating-label" element that comes after an input element within the ".user-input-wrp" container when the input is not in focus but has valid content. It applies the same styles as mentioned above. 
+* ---------------------------------------------------------
+*/
+
 .user-input-wrp input:focus~.floating-label,
 .user-input-wrp input:not(:focus):valid~.floating-label {
     top: -15px;
@@ -259,6 +282,22 @@ header {
 *   ACTION BUTTONS
 *--------------------
 */
+
+.mobile-actions {
+    display: none;
+}
+
+.plus-icon, .ellipsis-icon {
+    color: var(--folly);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: .4s all ease;
+}
+
+.plus-icon:hover, .ellipsis-icon:hover {
+    transform: scale(.8);
+}
+
 .cta {
     display: flex;
     align-items: center;
@@ -630,6 +669,7 @@ header {
 *---------------
 */
 @media (max-width: 768px) {
+
     .grid-wrapper {
         margin: auto;
         max-width: 60%;
@@ -645,5 +685,71 @@ header {
 
     .hero {
         max-width: 500px;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .mobile-actions {
+        display: block;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .cta {
+        display: none;
+    }
+
+    .hero {
+        margin: 1rem;
+        height: 160px;
+        clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    }
+
+    .promo {
+        font-size: 7rem;
+    }
+
+    .welcome-title {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1rem;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    
+    .welcome-title span {
+        transform: rotate(0deg);
+        font-size: 1.5rem;
+        background: transparent;
+        color: var(--white);
+        box-shadow: none;
+    }
+
+    .grid-wrapper {
+        margin: auto;
+        max-width: 90%;
+    }
+
+    .logo {
+        width: 30%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        max-width: 500px;
+    }
+
+    .sticky {
+        top: 5%;
+        right: 5%;
+    }
+
+    .add-product-form {
+        width: 19rem;
     }
 }

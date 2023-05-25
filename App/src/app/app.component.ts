@@ -1,8 +1,8 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose } from '@fortawesome/free-solid-svg-icons';
-import { SharedService } from './shared.service';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { SharedService } from '../services/forms/shared.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -37,16 +37,18 @@ export class AppComponent implements AfterViewInit {
   homeIcon = faHome;
   plusIcon = faPlusCircle;
   cartIcon = faCartShopping;
+  bagIcon = faBagShopping;
   upIcon = faArrowCircleUp;
   lockIcon = faLock;
   closeIcon = faClose;
+  ellipsisIcon = faEllipsis;
 
   // DEFAULT FORM INPUT VALUES
   defaultParams = {
     productName: 'Enter product name...',
     productImage: 'Enter image URL...',
     productPrice: 1000,
-    productDescription: 'Type product description here...',
+    productDescription: 'Product description...',
   };
 
   ngAfterViewInit() { }
@@ -71,7 +73,7 @@ export class AppComponent implements AfterViewInit {
     console.log('Form toggled...');
     // SELECT ADD PRODUCT FORM
     const addProductForm = this.elementRef.nativeElement;
-    addProductForm.classList.toggle('active');
+    addProductForm.classList.add('active');
   }
 
   ///////////////////////////////
