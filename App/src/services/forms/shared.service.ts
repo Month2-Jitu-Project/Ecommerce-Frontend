@@ -13,6 +13,8 @@ export class SharedService {
   private signUpFormSubject = new Subject<boolean>();
   signUpForm$ = this.signUpFormSubject.asObservable();
 
+  private categoriesFormSubject = new Subject<boolean>();
+  categoriesForm$ = this.categoriesFormSubject.asObservable();
 
   //////////////////////////////
   /// METHODS TO OPEN FORMS ////
@@ -27,6 +29,12 @@ export class SharedService {
     this.signUpFormSubject.next(true);
   }
 
+
+  openCategoriesForm(): void {
+    this.categoriesFormSubject.next(false);
+    this.categoriesFormSubject.next(true);
+  }
+
    //////////////////////////////
   /// METHODS TO CLOSE FORMS ///
   //////////////////////////////
@@ -38,5 +46,10 @@ export class SharedService {
   closeSignUpForm(): void {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(false);
+  }
+
+  closeCategoriesForm(): void {
+    this.categoriesFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
   }
 }

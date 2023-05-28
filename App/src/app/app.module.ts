@@ -9,6 +9,7 @@ import { ProductComponent } from '../product/product.component';
 import { SignUpComponent } from '../authentication/signup/signup.component';
 import { SignInComponent } from '../authentication/signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from 'src/categories/categories.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
         ProductComponent,
         SignInComponent,
         SignUpComponent,
+        CategoriesComponent,
         HttpClientModule
     ]
 })

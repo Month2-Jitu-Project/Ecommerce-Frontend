@@ -1,22 +1,22 @@
 <!-- POP UP FORM -->
 <div class="sticky">
     <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
-    <div class="form-container sign-in-form" [ngClass]="{ active: isActive }">
+    <div class="form-container categories-form" #categoriesForm [ngClass]="{ active: isActive }">
   
-      <!-- SIGN UP FORM -->
+      <!-- CATEGORIES FORM -->
       <form action="#" class="form">
   
         <div class="form-header">
           <!-- FORM TITLE -->
           <h2 class="form-title">
             <span>
-              Sign
+            ALL
             </span>
-            In
+            Categories
           </h2>
   
           <!-- CLOSE FORM BUTTON -->
-          <a class="close-form-btn" (click)="closeSignInForm()">
+          <a class="close-form-btn" (click)="closeCategoriesForm()">
             <fa-icon [icon]="closeIcon"></fa-icon>
           </a>
         </div>
@@ -25,26 +25,35 @@
           <div class="user-input-wrp">
             <input type="text" class="input-text" required>
             <span class="floating-label">
-              {{ defaultParams.email }}
+              {{ defaultParams.phones }}
             </span>
           </div>
   
           <div class="user-input-wrp">
             <input type="password" class="input-text" required>
             <span class="floating-label">
-              {{ defaultParams.password }}
+              {{ defaultParams.laptops }}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.gaming}}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.desktops }}
             </span>
           </div>
 
-          <!-- RESET PASSWORD LINK -->
-          <div class="forgot password">
-            <a href="/App/src/authentication/resetpassword/resetpassword.component.html">Forgot password</a>
-          </div>
-
-          <!-- SIGN UP BUTTON -->
-          <button class="signInBtn" (click)="signIn()">
+          <!-- CATEGORIES BUTTON -->
+          <button class="showCategoriesBtn" (click)="showCategories()">
             <fa-icon [icon]="upIcon"></fa-icon>
-            Sign In
+            Add Category
           </button>
         </div>
   

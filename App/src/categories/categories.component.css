@@ -9,10 +9,10 @@
 
 /*
 *----------------------
-* RESET PASSWORD FORM 
+* CATEGORIES FORM 
 *----------------------
 */
-.reset-password-form {
+.categories-form {
     position: absolute;
     z-index: 10;
     top: 10%;
@@ -29,7 +29,7 @@
     transition: .3s all ease;
 }
 
-.reset-password-form .form .form-header {
+.categories-form .form .form-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +37,7 @@
     margin-bottom: 1.9rem;
 }
 
-.reset-password-form .form .form-header span {
+.categories-form .form .form-header span {
     font-size: 1.7rem;
     padding: .6rem;
     border-radius: 3px;
@@ -63,7 +63,7 @@
 }
 
 
-.reset-password-form input {
+.categories-form input {
     width: 100%;
     border: none;
     border-bottom: 1px solid var(--folly);
@@ -74,12 +74,12 @@
     margin-bottom: 2rem;
 }
 
-.reset-password-form input:focus {
+.categories-form input:focus {
     outline: none;
     animation: border-glow 1s infinite;
 }
 
-.reset-password-form label {
+.categories-form label {
     font-weight: 700;
     color: var(--folly);
 }
@@ -120,7 +120,7 @@
     color: var(--folly);
 }
 
-.resetPasswordBtn {
+.showCategoriesBtn {
     width: 100%;
     border: none;
     border-radius: 24px 0;
@@ -137,17 +137,17 @@
     transition: .4s all ease;
 }
 
-.resetPasswordBtn:hover {
+.showCategriesBtn:hover {
     transform: translateY(-4px);
     box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
 /*
 *--------------------------------
-*SIGN UP FORM : ACTIVE STATE
+*CATEGORIES FORM : ACTIVE STATE
 *--------------------------------
 */
-.reset-password-form.active {
+.categories-form.active {
     transform: scale(1);
 }
 
