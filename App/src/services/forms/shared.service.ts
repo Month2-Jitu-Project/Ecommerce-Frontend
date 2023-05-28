@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 // THE @Injectable DECORATOR INDICATES 
 // THAT THE EXPORTED CLASS IS A SERVICE
@@ -40,5 +39,4 @@ export class SharedService {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(false);
   }
-  
 }

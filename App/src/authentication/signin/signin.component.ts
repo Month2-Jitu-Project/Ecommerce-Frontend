@@ -11,7 +11,7 @@ import {
   faLock,
   faClose,
 } from '@fortawesome/free-solid-svg-icons';
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from '../../services/forms/shared.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT

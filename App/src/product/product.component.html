@@ -19,14 +19,14 @@
 
         <div class="product-details">
             <h2 class="product-title">
-                {{ product.productTitle }}
+                {{ (product.productName.length > 10)? (product.productName | slice:0:10)+'...':(product.productName) }}
                 <fa-icon [icon]="ellipsisIcon"></fa-icon>
             </h2>
 
             <h3 class="product-price">
-                {{ product.productPrice | currency }}
+                {{ product.price | currency }}
                 <span class="previous-price">
-                    {{ product.productPrice + 500 | currency }}
+                    {{ product.price + 500 | currency }}
                 </span>
             </h3>
 
