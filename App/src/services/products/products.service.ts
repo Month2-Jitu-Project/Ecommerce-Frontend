@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { ProductModel } from 'src/abstract_classes/product.model';
+import { ProductModel } from '../../abstract_classes/product.model';
 
 @Injectable({
     providedIn: 'root'
@@ -32,5 +32,13 @@ export class ProductService {
 
     getStoredProducts(): Observable<ProductModel[]> {
         return this.productsSubject.asObservable();
+    }
+
+    createProduct(product: ProductModel, token: string): Observable<any> {
+        const headers = new HttpHeaders({ 
+            'Content-Type': 'application/json',
+            'token': `${token}`
+         });
+        return this.http.post<any>(this.productsUrl, product, { headers });
     }
 }

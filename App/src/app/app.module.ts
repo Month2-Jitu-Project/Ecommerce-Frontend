@@ -3,12 +3,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProductComponent } from '../product/product.component';
-import { SignUpComponent } from '../authentication/signup/signup.component';
-import { SignInComponent } from '../authentication/signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
+// MAIN APP COMPONENTS
+import { AppComponent } from './app.component';
+import { DisplayProductComponent } from './products/display_product/displayProduct.component';
+import { SignInComponent } from './authentication/signin/signin.component';
+import { SignUpComponent } from './authentication/signup/signup.component';
+// ADDITIONAL MODULES
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -30,10 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
-        ProductComponent,
+        DisplayProductComponent,
         SignInComponent,
         SignUpComponent,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
     ]
 })
 export class AppModule { }

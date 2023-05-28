@@ -4,23 +4,22 @@ import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // ICONS
 import { faTrashCan, faPlus, faCartShopping, faHeart, faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import { ProductModel } from 'src/abstract_classes/product.model';
-import { ProductService } from 'src/services/products/products.service';
+import { ProductModel } from '../../../abstract_classes/product.model';
+import { ProductService } from '../../../services/products/products.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
   selector: 'product', // CUSTOM HTML SELECTOR 
-  templateUrl: './product.component.html', // LINK TO HTML 
-  styleUrls: ['./product.component.css'],  // LINK TO CSS  
+  templateUrl: 'displayProduct.component.html', // LINK TO HTML 
+  styleUrls: ['displayProduct.component.css'],  // LINK TO CSS  
   standalone: true,
   imports: [CommonModule, FontAwesomeModule]
 })
-export class ProductComponent implements OnInit {
+export class DisplayProductComponent implements OnInit {
 
   products: any[] = [];
 
   constructor(private productService: ProductService) { }
-
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -28,7 +27,6 @@ export class ProductComponent implements OnInit {
   cartIcon = faCartShopping;
   heartIcon = faHeart;
   ellipsisIcon = faEllipsis;
-
 
   ngOnInit() {
     this.productService.fetchProducts();
@@ -57,5 +55,4 @@ export class ProductComponent implements OnInit {
   addToFavorites() {
     alert('Product deleted!');
   }
-
 }
