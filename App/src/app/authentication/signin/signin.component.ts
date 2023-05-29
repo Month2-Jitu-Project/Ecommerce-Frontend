@@ -28,6 +28,13 @@ export class SignInComponent {
     });
   }
 
+  //PROPERTY TO HOLD ACTIVE STATE
+  setResetPasswordActive():void {
+    this.sharedService.openResetPasswordForm();
+    // console.log("forgot password for clicked")
+  }
+
+
   // FONT AWESOME ICONS
   homeIcon = faHome;
   plusIcon = faPlusCircle;

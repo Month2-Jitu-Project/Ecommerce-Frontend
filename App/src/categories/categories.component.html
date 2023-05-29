@@ -1,0 +1,63 @@
+<!-- POP UP FORM -->
+<div class="sticky">
+    <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
+    <div class="form-container categories-form" #categoriesForm [ngClass]="{ active: isActive }">
+  
+      <!-- CATEGORIES FORM -->
+      <form action="#" class="form">
+  
+        <div class="form-header">
+          <!-- FORM TITLE -->
+          <h2 class="form-title">
+            <span>
+            ALL
+            </span>
+            Categories
+          </h2>
+  
+          <!-- CLOSE FORM BUTTON -->
+          <a class="close-form-btn" (click)="closeCategoriesForm()">
+            <fa-icon [icon]="closeIcon"></fa-icon>
+          </a>
+        </div>
+  
+        <div class="form-input">
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.phones }}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="password" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.laptops }}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.gaming}}
+            </span>
+          </div>
+  
+          <div class="user-input-wrp">
+            <input type="text" class="input-text" required>
+            <span class="floating-label">
+              {{ defaultParams.desktops }}
+            </span>
+          </div>
+
+          <!-- CATEGORIES BUTTON -->
+          <button class="showCategoriesBtn" (click)="showCategories()">
+            <fa-icon [icon]="upIcon"></fa-icon>
+            Add Category
+          </button>
+        </div>
+  
+      </form>
+    </div>
+    <!--=====================================-->
+  </div>

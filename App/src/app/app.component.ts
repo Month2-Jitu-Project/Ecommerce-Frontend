@@ -27,6 +27,12 @@ export class AppComponent implements AfterViewInit {
   // INITIALIZE PRODUCT FORM
   productForm!: FormGroup;
 
+  setCategoriesActive(): void {
+    this.sharedService.openCategoriesForm();
+  }
+
+ 
+  // LOGO IMAGE URL
   // INJECT SERVICES & FORM CLASSES
   constructor(private sharedService: SharedService, private productService: ProductService, private formBuilder: FormBuilder) { }
 
