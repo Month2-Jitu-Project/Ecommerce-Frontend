@@ -1,3 +1,17 @@
+/* CUSTOM STYLING FOR FROM SCROLL BAR */
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--folly);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 /* sticky ELEMENT: make an element "stick" to a specific position on the screen as the user scrolls */
 .sticky {
     position: fixed;
@@ -23,6 +37,8 @@
     border-top: 12px solid var(--folly);
     box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.3);
     width: 25rem;
+    height: 550px;
+    overflow-x: scroll;
     padding: 2rem;
     transform: scale(0);
     transform-origin: top center;

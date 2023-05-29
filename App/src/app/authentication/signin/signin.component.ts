@@ -3,39 +3,37 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
-import {
-  faHome,
-  faPlusCircle,
-  faCartShopping,
-  faArrowCircleUp,
-  faLock,
-  faClose
-} from '@fortawesome/free-solid-svg-icons';
-import { SharedService } from '../../services/forms/shared.service';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose } from '@fortawesome/free-solid-svg-icons';
+// This service handles the displaying of pop up forms
+import { SharedService } from '../../../services/forms/shared.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
-  selector: 'signup', // CUSTOM HTML SELECTOR
-  templateUrl: './signup.component.html', // LINK TO HTML
-  styleUrls: ['./signup.component.css'], // LINK TO CSS
+  selector: 'signin', // CUSTOM HTML SELECTOR
+  templateUrl: './signin.component.html', // LINK TO HTML
+  styleUrls: ['./signin.component.css'], // LINK TO CSS
   standalone: true,
   imports: [CommonModule, FontAwesomeModule]
 })
-export class SignUpComponent {
+export class SignInComponent {
   // SET isActive STATE TO false
   isActive: boolean = false;
   // INJECT SHARED SERVICE
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
-    this.sharedService.signUpForm$.subscribe(active => {
+    this.sharedService.signInForm$.subscribe(active => {
       this.isActive = active;
     });
   }
-  // LOGO IMAGE URL
-  logoImageURL = './assets/images/png/logo_color.png';
-  logoImageURLalt = './assets/images/png/logo_color_cart.png';
+
+  //PROPERTY TO HOLD ACTIVE STATE
+  setResetPasswordActive():void {
+    this.sharedService.openResetPasswordForm();
+    // console.log("forgot password for clicked")
+  }
+
 
   // FONT AWESOME ICONS
   homeIcon = faHome;
@@ -49,20 +47,20 @@ export class SignUpComponent {
   defaultParams = {
     email: 'Email address...',
     password: 'Password...',
-    firstName: 'First name...',
-    lastName: 'Last name...',
-    phoneNumber: 'Phone number...',
   };
 
   ngAfterViewInit() {
     console.log('Form initialized!');
   }
 
-  closeSignUpForm() {
-    this.sharedService.closeSignUpForm();
+  closeSignInForm() {
+    this.sharedService.closeSignInForm();
   }
 
-  signUp() {
+  ///////////////////////////////////
+  /// METHOD FOR SIGNING IN USERS ///
+  ///////////////////////////////////
+  signIn() {
     console.log(this);
   }
 }

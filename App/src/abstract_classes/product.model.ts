@@ -1,5 +1,5 @@
 // EXPORT PRODUCT MODEL
-export class ProductModel {
+export class PRODUCT_MODEL {
     productName!: string;
     productImage!: string;
     productDescription!: string;

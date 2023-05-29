@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { ProductModel } from 'src/abstract_classes/product.model';
+import { PRODUCT_MODEL } from '../../abstract_classes/product.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
     private productsUrl = 'http://localhost:4000/products';
-    private products: ProductModel[] = [];
-    private productsSubject: Subject<ProductModel[]> = new Subject<ProductModel[]>();
+    private products: PRODUCT_MODEL[] = [];
+    private productsSubject: Subject<PRODUCT_MODEL[]> = new Subject<PRODUCT_MODEL[]>();
 
     constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ProductService {
 
     fetchProducts(): void {
         this.getProducts().subscribe(
-            (products: ProductModel[]) => {
+            (products: PRODUCT_MODEL[]) => {
                 this.products = products;
                 this.productsSubject.next(this.products); 
                 // EMIT UPDATED products
@@ -30,7 +30,15 @@ export class ProductService {
         );
     }
 
-    getStoredProducts(): Observable<ProductModel[]> {
+    getStoredProducts(): Observable<PRODUCT_MODEL[]> {
         return this.productsSubject.asObservable();
+    }
+
+    createProduct(product: PRODUCT_MODEL, token: string): Observable<any> {
+        const headers = new HttpHeaders({ 
+            'Content-Type': 'application/json',
+            'token': `${token}`
+         });
+        return this.http.post<any>(this.productsUrl, product, { headers });
     }
 }

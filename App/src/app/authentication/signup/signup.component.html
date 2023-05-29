@@ -1,10 +1,10 @@
 <!-- POP UP FORM -->
 <div class="sticky">
   <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
-  <div class="form-container sign-up-form" #signUpForm [ngClass]="{ active: isActive }">
+  <div class="form-container sign-up-form" [ngClass]="{ active: isActive }">
 
     <!-- SIGN UP FORM -->
-    <form action="#" class="form">
+    <form [formGroup]="signUpForm" class="form">
 
       <div class="form-header">
         <!-- FORM TITLE -->
@@ -23,37 +23,58 @@
 
       <div class="form-input">
         <div class="user-input-wrp">
-          <input type="text" class="input-text" required>
+          <input type="text" class="input-text" formControlName="email" required>
           <span class="floating-label">
             {{ defaultParams.email }}
           </span>
         </div>
 
         <div class="user-input-wrp">
-          <input type="password" class="input-text" required>
+          <input type="password" class="input-text" formControlName="userPassword" required>
           <span class="floating-label">
-            {{ defaultParams.password }}
+            {{ defaultParams.userPassword }}
           </span>
         </div>
 
         <div class="user-input-wrp">
-          <input type="text" class="input-text" required>
+          <input type="text" class="input-text" formControlName="firstName" required>
           <span class="floating-label">
             {{ defaultParams.firstName}}
           </span>
         </div>
 
         <div class="user-input-wrp">
-          <input type="text" class="input-text" required>
+          <input type="text" class="input-text" formControlName="lastName" required>
           <span class="floating-label">
             {{ defaultParams.lastName }}
           </span>
         </div>
 
         <div class="user-input-wrp">
-          <input type="text" class="input-text" required>
+          <input type="text" class="input-text" formControlName="streetAddress" required>
           <span class="floating-label">
-            {{ defaultParams.phoneNumber }}
+            {{ defaultParams.streetAddress }}
+          </span>
+        </div>
+
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" formControlName="city" required>
+          <span class="floating-label">
+            {{ defaultParams.city }}
+          </span>
+        </div>
+
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" formControlName="country" required>
+          <span class="floating-label">
+            {{ defaultParams.country }}
+          </span>
+        </div>
+
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" formControlName="phone" required>
+          <span class="floating-label">
+            {{ defaultParams.phone }}
           </span>
         </div>
         <!-- SIGN UP BUTTON -->
@@ -62,8 +83,7 @@
           Sign Up
         </button>
       </div>
-
     </form>
   </div>
-  <!--=====================================-->
 </div>
+ <!--=====================================-->
