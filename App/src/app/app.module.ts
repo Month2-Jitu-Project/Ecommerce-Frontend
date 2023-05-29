@@ -15,6 +15,7 @@ import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './authentication/signin/signin.component';
 import { SignUpComponent } from './authentication/signup/signup.component';
+import { ResetpasswordComponent } from "./authentication/resetpassword/resetpassword.component";
 
 
 // THE NgModule DECORATOR INDICATES THAT
@@ -42,7 +43,8 @@ import { SignUpComponent } from './authentication/signup/signup.component';
         SignUpComponent,
         CategoriesComponent,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ResetpasswordComponent
     ]
 })
 export class AppModule { }

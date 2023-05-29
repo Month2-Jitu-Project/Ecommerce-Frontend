@@ -14,7 +14,7 @@ import {
 import { SharedService } from 'src/services/forms/shared.service';
 
 @Component({
-  selector: 'app-resetpassword',
+  selector: 'reset-password',
   standalone: true,
   imports: [CommonModule,FontAwesomeModule],
   templateUrl: './resetpassword.component.html',
@@ -34,13 +34,10 @@ export class ResetpasswordComponent {
     }
     
 
-    // setResetPasswordActive():void {
-    //   this.sharedService.openResetPasswordForm();
-    // }
+    setResetPasswordActive():void {
+      this.sharedService.openResetPasswordForm();
+    }
 
-    // LOGO IMAGE URL
-    logoImageURL = './assets/images/png/logo_color.png';
-    logoImageURLalt = './assets/images/png/logo_color_cart.png';
   
     // FONT AWESOME ICONS
     homeIcon = faHome;
@@ -53,7 +50,6 @@ export class ResetpasswordComponent {
     // DEFAULT FORM INPUT VALUES
     defaultParams = {
       email: 'Email address...',
-      phoneNumber: 'Phone number...',
     };
   
     ngAfterViewInit() {
@@ -61,7 +57,7 @@ export class ResetpasswordComponent {
     }
   
     closeResetPasswordForm() {
-      this.sharedService.closeResetPasswordForm();
+      this.sharedService.closeResetForm();
     }
   
     resetPassword() {
