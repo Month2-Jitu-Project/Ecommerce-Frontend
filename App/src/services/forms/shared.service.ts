@@ -1,3 +1,6 @@
+/////////////////////////
+//////// IMPORTS ////////
+/////////////////////////
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 // THE @Injectable DECORATOR INDICATES 
@@ -6,7 +9,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  // DEFINE A PROPERTY TO HOLD THE ACTIVE STATE
+  // DEFINE PROPERTIES TO HOLD THE ACTIVE STATE
   private signInFormSubject = new Subject<boolean>();
   signInForm$ = this.signInFormSubject.asObservable();
 
@@ -26,14 +29,15 @@ export class SharedService {
     this.signInFormSubject.next(true);
     this.signUpFormSubject.next(false);
     this.resetPasswordFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
   }
 
   openSignUpForm(): void {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(true);
     this.resetPasswordFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
   }
-
 
   openCategoriesForm(): void {
     this.signInFormSubject.next(false);
@@ -48,7 +52,7 @@ export class SharedService {
     this.categoriesFormSubject.next(false);
   }
 
-   //////////////////////////////
+  //////////////////////////////
   /// METHODS TO CLOSE FORMS ///
   //////////////////////////////
   closeSignInForm(): void {

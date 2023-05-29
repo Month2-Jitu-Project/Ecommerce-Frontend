@@ -22,7 +22,7 @@
           Latest
         </a>
       </li>
-      <li class="link-item">
+      <li class="link-item" *ngIf="Authenticated()">
         <span class="is-active-wrapper">
           <a class="link is-active" (click)="togglePopUp()">
             <fa-icon [icon]="plusIcon">
@@ -118,7 +118,7 @@
   <!-- MOBILE ACTIONS -->
   <div class="mobile-actions">
     <!-- TOGGLE ADD PRODUCT FORM -->
-    <a class="plus-icon">
+    <a class="plus-icon" *ngIf="Authenticated()">
       <fa-icon [icon]="plusIcon" (click)="togglePopUp()"></fa-icon>
     </a>
     <!-- TOGGLE SIDE NAVIGATION -->

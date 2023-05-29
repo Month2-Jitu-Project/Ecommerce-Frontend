@@ -9,3 +9,4 @@ export class USER_MODEL {
     country!: string
     phone!: string
 }
+

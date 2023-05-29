@@ -6,6 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose } from '@fortawesome/free-solid-svg-icons';
 // This service handles the displaying of pop up forms
 import { SharedService } from '../../../services/forms/shared.service';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from 'src/services/users/users.service';
+import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
+import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -14,15 +18,24 @@ import { SharedService } from '../../../services/forms/shared.service';
   templateUrl: './signin.component.html', // LINK TO HTML
   styleUrls: ['./signin.component.css'], // LINK TO CSS
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule]
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule]
 })
 export class SignInComponent {
   // SET isActive STATE TO false
   isActive: boolean = false;
+
+  // INITIALIZE SIGN in FORM
+  signInForm!: FormGroup;
+
   // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.signInForm = this.formBuilder.group({
+      email: ["", Validators.required],
+      userPassword: ["", Validators.required]
+    })
+
     this.sharedService.signInForm$.subscribe(active => {
       this.isActive = active;
     });
@@ -31,9 +44,7 @@ export class SignInComponent {
   //PROPERTY TO HOLD ACTIVE STATE
   setResetPasswordActive():void {
     this.sharedService.openResetPasswordForm();
-    console.log("forgot password for clicked")
   }
-
 
   // FONT AWESOME ICONS
   homeIcon = faHome;
@@ -50,7 +61,7 @@ export class SignInComponent {
   };
 
   ngAfterViewInit() {
-    console.log('Form initialized!');
+    
   }
 
   closeSignInForm() {
@@ -61,6 +72,24 @@ export class SignInComponent {
   /// METHOD FOR SIGNING IN USERS ///
   ///////////////////////////////////
   signIn() {
-    console.log(this);
+    if (this.signInForm.valid) {
+      const user: LOGIN_MODEL = this.signInForm.value;
+
+      this.userService.loginUser(user).subscribe((signInResponse: RESPONSE_MODEL) => {
+
+        // RETRIEVE RESPONSE FROM REQUEST
+        const response = signInResponse.response;
+        // RETRIEVE TOKEN FROM REQUEST
+        const token = signInResponse.token;
+
+        console.log('RESPONSE : ', response);
+
+        // SAVE TOKEN TO LOCAL STORAGE
+        localStorage.setItem('token', token);
+      },
+      (error: any) => {
+        console.error(error);
+      });
+    }
   }
 }

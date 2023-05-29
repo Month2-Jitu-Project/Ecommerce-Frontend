@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SharedService } from '../services/forms/shared.service';
 import { ProductService } from 'src/services/products/products.service';
 import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
+import { UserService } from 'src/services/users/users.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -31,10 +32,8 @@ export class AppComponent implements AfterViewInit {
     this.sharedService.openCategoriesForm();
   }
 
- 
-  // LOGO IMAGE URL
   // INJECT SERVICES & FORM CLASSES
-  constructor(private sharedService: SharedService, private productService: ProductService, private formBuilder: FormBuilder) { }
+  constructor(private sharedService: SharedService, private productService: ProductService, private userService: UserService, private formBuilder: FormBuilder) { }
 
   //////////////////////////////////////////
   //    METHODS TO UPDATE ACTIVE STATE    //
@@ -86,14 +85,13 @@ export class AppComponent implements AfterViewInit {
   /// METHOD TO REDIRECT USER TO HOMEPAGE ///
   ///////////////////////////////////////////
   redirectToHomePage() {
-    // console.log(this.homeIcon);
+
   }
 
   /////////////////////////////////////////
   //// METHOD FOR TOGGLING POP UP MENU ////
   /////////////////////////////////////////
   togglePopUp() {
-    console.log('Form toggled...');
     // SELECT ADD PRODUCT FORM
     const addProductForm = this.elementRef.nativeElement;
     addProductForm.classList.add('active');
@@ -105,13 +103,19 @@ export class AppComponent implements AfterViewInit {
     addProductForm.classList.remove('active');
   }
 
+  // METHOD FOR CHECKING IF USER IS AUTHENTICATED
+  Authenticated() {
+    return this.userService.isAuthenticated();
+  }
+
   ///////////////////////////////
   // METHOD FOR ADDING PRODUCT //
   ///////////////////////////////
   addProduct() {
     if (this.productForm.valid) {
       const newProduct: PRODUCT_MODEL = this.productForm.value;
-      const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NzA2NWYwMy05NTgwLTQ2ZDAtOTBhNi01NmMxZWRlNmYwZTkiLCJlbWFpbCI6ImpvbmF0aGFubmRhbWJ1a2lAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6Ik5kYW1idWtpIiwiaXNEZWxldGVkIjowLCJpc0FkbWluIjowLCJlbWFpbHNSZWNlaXZlZCI6MCwiaWF0IjoxNjg1MTg2NTYzLCJleHAiOjE2ODU1NDY1NjN9.ZEU2ygQJX-nDA-1IwnSZfdO2PQCd4qsv1DKr7iLySzc`;
+      // GET TOKEN FROM LOCAL STORAGE
+      const token = localStorage.getItem('token') as string;
 
       this.productService.createProduct(newProduct, token).subscribe((response: any) => {
         console.log(response);

@@ -53,6 +53,6 @@ export class DisplayProductComponent implements OnInit {
   //// METHOD TO ADD PRODUCT TO FAVORITES ////
   ////////////////////////////////////////////
   addToFavorites() {
-    alert('Product deleted!');
+    alert('Product added to favorites!');
   }
 }

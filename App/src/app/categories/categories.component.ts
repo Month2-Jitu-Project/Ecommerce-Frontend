@@ -50,7 +50,7 @@ export class CategoriesComponent {
    };
  
    ngAfterViewInit() {
-     console.log('Form initialized!');
+    
    }
  
    closeCategoriesForm() {
@@ -58,6 +58,6 @@ export class CategoriesComponent {
    }
  
    showCategories() {
-     console.log(this);
+     
    }
 }

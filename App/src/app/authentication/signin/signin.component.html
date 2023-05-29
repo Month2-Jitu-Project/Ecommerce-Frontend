@@ -1,59 +1,53 @@
 <!-- POP UP FORM -->
 <div class="sticky">
-    <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
-    <div class="form-container sign-in-form" [ngClass]="{ active: isActive }">
-  
-      <!-- SIGN UP FORM -->
-      <form class="form">
-  
-        <div class="form-header">
-          <!-- FORM TITLE -->
-          <h2 class="form-title">
-            <span>
-              Sign
-            </span>
-            In
-          </h2>
-  
-          <!-- CLOSE FORM BUTTON -->
-          <a class="close-form-btn" (click)="closeSignInForm()">
-            <fa-icon [icon]="closeIcon"></fa-icon>
-          </a>
+  <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
+  <div class="form-container sign-in-form" [ngClass]="{ active: isActive }">
+
+    <!-- SIGN UP FORM -->
+    <form [formGroup]="signInForm" class="form">
+
+      <div class="form-header">
+        <!-- FORM TITLE -->
+        <h2 class="form-title">
+          <span>
+            Sign
+          </span>
+          In
+        </h2>
+
+        <!-- CLOSE FORM BUTTON -->
+        <a class="close-form-btn" (click)="closeSignInForm()">
+          <fa-icon [icon]="closeIcon"></fa-icon>
+        </a>
+      </div>
+
+      <div class="form-input">
+        <div class="user-input-wrp">
+          <input type="text" class="input-text" formControlName="email" required>
+          <span class="floating-label">
+            {{ defaultParams.email }}
+          </span>
         </div>
-  
-        <div class="form-input">
-          <div class="user-input-wrp">
-            <input type="text" class="input-text" required>
-            <span class="floating-label">
-              {{ defaultParams.email }}
-            </span>
-          </div>
-  
-          <div class="user-input-wrp">
-            <input type="password" class="input-text" required>
-            <span class="floating-label">
-              {{ defaultParams.password }}
-            </span>
-          </div>
 
-          <!-- RESET PASSWORD LINK -->
-          <div class="forgot password">
-            <!-- <a class="link" (click)="setResetPasswordActive()" >Forgot password</a> -->
-          </div>
-
-          <!-- SIGN IN BUTTON -->
-          <button class="signInBtn" (click)="signIn()">
-            <fa-icon [icon]="upIcon"></fa-icon>
-            Sign In
-          </button>
-
+        <div class="user-input-wrp">
+          <input type="password" class="input-text" formControlName="userPassword" required>
+          <span class="floating-label">
+            {{ defaultParams.password }}
+          </span>
         </div>
-  
-      </form>
 
-      <!-- RESET PASSWORD BUTTON -->
+        <!-- SIGN IN BUTTON -->
+        <button class="signInBtn" (click)="signIn()">
+          <fa-icon [icon]="upIcon"></fa-icon>
+          Sign In
+        </button>
+      </div>
+    </form>
 
-      <button class="forgotPasswordBtn"  (click)="setResetPasswordActive()">Forgot Password</button>
-    </div>
+    <!-- RESET PASSWORD BUTTON -->
+    <button class="forgotPasswordBtn" (click)="setResetPasswordActive()">
+      Forgot Password
+    </button>
   </div>
+</div>
 <!--=====================================-->
