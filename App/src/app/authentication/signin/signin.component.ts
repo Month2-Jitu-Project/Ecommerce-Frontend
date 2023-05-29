@@ -31,7 +31,7 @@ export class SignInComponent {
   //PROPERTY TO HOLD ACTIVE STATE
   setResetPasswordActive():void {
     this.sharedService.openResetPasswordForm();
-    // console.log("forgot password for clicked")
+    console.log("forgot password for clicked")
   }
 
 

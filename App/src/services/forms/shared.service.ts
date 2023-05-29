@@ -25,22 +25,27 @@ export class SharedService {
   openSignInForm(): void {
     this.signInFormSubject.next(true);
     this.signUpFormSubject.next(false);
+    this.resetPasswordFormSubject.next(false);
   }
 
   openSignUpForm(): void {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(true);
+    this.resetPasswordFormSubject.next(false);
   }
 
 
   openCategoriesForm(): void {
-    this.categoriesFormSubject.next(false);
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(true);
   }
 
   openResetPasswordForm(): void {
-    // this.resetPasswordFormSubject.next(false);
     this.resetPasswordFormSubject.next(true);
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
   }
 
    //////////////////////////////
@@ -58,11 +63,9 @@ export class SharedService {
 
   closeCategoriesForm(): void {
     this.categoriesFormSubject.next(false);
-    this.categoriesFormSubject.next(false);
   }
 
-  closeResetPasswordForm(): void {
-    this.resetPasswordFormSubject.next(false);
+  closeResetForm(): void {
     this.resetPasswordFormSubject.next(false);
   }
 }

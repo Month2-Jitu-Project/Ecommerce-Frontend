@@ -41,7 +41,7 @@
             <!-- <a class="link" (click)="setResetPasswordActive()" >Forgot password</a> -->
           </div>
 
-          <!-- SIGN UP BUTTON -->
+          <!-- SIGN IN BUTTON -->
           <button class="signInBtn" (click)="signIn()">
             <fa-icon [icon]="upIcon"></fa-icon>
             Sign In
@@ -51,7 +51,9 @@
   
       </form>
 
-      <button (click)="setResetPasswordActive()">Forgot Password</button>
+      <!-- RESET PASSWORD BUTTON -->
+
+      <button class="forgotPasswordBtn"  (click)="setResetPasswordActive()">Forgot Password</button>
     </div>
   </div>
 <!--=====================================-->
