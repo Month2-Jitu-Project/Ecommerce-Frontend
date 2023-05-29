@@ -27,9 +27,6 @@ export class SignInComponent {
       this.isActive = active;
     });
   }
-  // LOGO IMAGE URL
-  logoImageURL = './assets/images/png/logo_color.png';
-  logoImageURLalt = './assets/images/png/logo_color_cart.png';
 
   // FONT AWESOME ICONS
   homeIcon = faHome;

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // ICONS
 import { faTrashCan, faPlus, faCartShopping, faHeart, faEllipsis } from '@fortawesome/free-solid-svg-icons';
-import { ProductModel } from '../../../abstract_classes/product.model';
+import { PRODUCT_MODEL } from '../../../abstract_classes/product.model';
 import { ProductService } from '../../../services/products/products.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -30,7 +30,7 @@ export class DisplayProductComponent implements OnInit {
 
   ngOnInit() {
     this.productService.fetchProducts();
-    this.productService.getStoredProducts().subscribe((products: ProductModel[]) => {
+    this.productService.getStoredProducts().subscribe((products: PRODUCT_MODEL[]) => {
       this.products = products;
     });
   }

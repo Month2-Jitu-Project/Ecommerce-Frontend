@@ -11,8 +11,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angula
 
 // This service handles the displaying of pop up forms
 import { SharedService } from '../../../services/forms/shared.service';
-import { UserModel } from 'src/abstract_classes/user.model';
-import { UserService } from 'src/services/users/addUser.service';
+import { USER_MODEL } from 'src/abstract_classes/user.model';
+import { UserService } from 'src/services/users/users.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -77,7 +77,7 @@ export class SignUpComponent {
 
   signUp() {
     if (this.signUpForm.valid) {
-      const newUser: UserModel = this.signUpForm.value;
+      const newUser: USER_MODEL = this.signUpForm.value;
       
       this.userService.createUser(newUser).subscribe((response: any) => {
         console.log(response);

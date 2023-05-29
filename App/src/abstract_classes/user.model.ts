@@ -1,5 +1,5 @@
 // EXPORT USER MODEL
-export class UserModel {
+export class USER_MODEL {
     email!: string
     userPassword!: string
     firstName!: string
