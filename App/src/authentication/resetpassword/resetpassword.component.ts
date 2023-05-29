@@ -25,12 +25,19 @@ export class ResetpasswordComponent {
     isActive: boolean = false;
     // INJECT SHARED SERVICE
     constructor(private sharedService: SharedService) { }
-  
+
+
     ngOnInit(): void {
-      this.sharedService.signUpForm$.subscribe(active => {
+      this.sharedService.resetPasswordForm$.subscribe(active => {
         this.isActive = active;
       });
     }
+    
+
+    // setResetPasswordActive():void {
+    //   this.sharedService.openResetPasswordForm();
+    // }
+
     // LOGO IMAGE URL
     logoImageURL = './assets/images/png/logo_color.png';
     logoImageURLalt = './assets/images/png/logo_color_cart.png';
@@ -54,7 +61,7 @@ export class ResetpasswordComponent {
     }
   
     closeResetPasswordForm() {
-      this.sharedService.closeSignUpForm();
+      this.sharedService.closeResetPasswordForm();
     }
   
     resetPassword() {

@@ -16,6 +16,9 @@ export class SharedService {
   private categoriesFormSubject = new Subject<boolean>();
   categoriesForm$ = this.categoriesFormSubject.asObservable();
 
+  private resetPasswordFormSubject = new Subject<boolean>();
+  resetPasswordForm$ = this.resetPasswordFormSubject.asObservable();
+
   //////////////////////////////
   /// METHODS TO OPEN FORMS ////
   //////////////////////////////
@@ -35,6 +38,11 @@ export class SharedService {
     this.categoriesFormSubject.next(true);
   }
 
+  openResetPasswordForm(): void {
+    // this.resetPasswordFormSubject.next(false);
+    this.resetPasswordFormSubject.next(true);
+  }
+
    //////////////////////////////
   /// METHODS TO CLOSE FORMS ///
   //////////////////////////////
@@ -51,5 +59,10 @@ export class SharedService {
   closeCategoriesForm(): void {
     this.categoriesFormSubject.next(false);
     this.categoriesFormSubject.next(false);
+  }
+
+  closeResetPasswordForm(): void {
+    this.resetPasswordFormSubject.next(false);
+    this.resetPasswordFormSubject.next(false);
   }
 }

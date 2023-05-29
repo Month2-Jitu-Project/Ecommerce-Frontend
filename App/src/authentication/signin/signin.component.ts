@@ -12,6 +12,7 @@ import {
   faClose,
 } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from '../../services/forms/shared.service';
+import { AppComponent } from 'src/app/app.component';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -33,6 +34,13 @@ export class SignInComponent {
       this.isActive = active;
     });
   }
+
+  //PROPERTY TO HOLD ACTIVE STATE
+  setResetPasswordActive():void {
+    this.sharedService.openResetPasswordForm();
+    // console.log("forgot password for clicked")
+  }
+
   // LOGO IMAGE URL
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';

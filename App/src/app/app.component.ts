@@ -33,6 +33,7 @@ export class AppComponent implements AfterViewInit {
     this.sharedService.openCategoriesForm();
   }
 
+ 
   // LOGO IMAGE URL
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';
