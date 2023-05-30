@@ -84,6 +84,13 @@
           </div>
 
           <div class="user-input-wrp">
+            <input type="text" class="input-text" formControlName="category" required>
+            <span class="floating-label">
+              {{ defaultParams.productCategory }}
+            </span>
+          </div>
+
+          <div class="user-input-wrp">
             <input type="text" class="input-text" formControlName="price" required>
             <span class="floating-label">
               {{ defaultParams.productPrice | currency }}
