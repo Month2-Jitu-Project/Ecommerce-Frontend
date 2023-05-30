@@ -20,13 +20,15 @@ export class CategoriesService {
     //api endpoint for fetching products
     const url = `${this.baseUrl}/products`
 
-    //sends a post request to backend server with selected categories
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNzM1NGI0Yy0yMjg1LTRjZGItODA5ZS0zODFiNjI4NTU0ZWUiLCJlbWFpbCI6ImpvbmF0aGFubmRhbWJ1a2lAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6Ik5kYW1idWtpIiwiaXNEZWxldGVkIjowLCJpc0FkbWluIjowLCJlbWFpbHNSZWNlaXZlZCI6MCwiaWF0IjoxNjg1NDQ4MTI2LCJleHAiOjE2ODU4MDgxMjZ9.YeDGpXoURqcsECQga_1LC-ebF0xW2IkdLk7S2443AEA'
+      // Get the login token from your backend
+      const loginToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNzM1NGI0Yy0yMjg1LTRjZGItODA5ZS0zODFiNjI4NTU0ZWUiLCJlbWFpbCI6ImpvbmF0aGFubmRhbWJ1a2lAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6Ik5kYW1idWtpIiwiaXNEZWxldGVkIjowLCJpc0FkbWluIjowLCJlbWFpbHNSZWNlaXZlZCI6MCwiaWF0IjoxNjg1NDUxODYwLCJleHAiOjE2ODU4MTE4NjB9.OPAjgqbQcAGsVLNVkknEFgMir-R4-bIH63n2uScdUYc';
 
-     const header = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token':`${token}`
+    // Create the headers with the login token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${loginToken}`
     });
-    return this.http.post(url,{header,categories});
+
+    // Sends a post request to the backend server with selected categories and headers
+    return this.http.post(url, { categories }, { headers });
   }
 }
