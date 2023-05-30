@@ -66,7 +66,8 @@ export class AppComponent implements AfterViewInit {
     productName: 'Enter product name...',
     productImage: 'Enter image URL...',
     productPrice: 1000,
-    productDescription: 'Product description...',
+    productCategory: 'Enter category...', 
+    productDescription: 'Enter description...',
   };
 
   // CREATE REACTIVE FORM
@@ -75,6 +76,7 @@ export class AppComponent implements AfterViewInit {
       productName: ["", Validators.required],
       productImage: ["", Validators.required],
       productDescription: ["", Validators.required],
+      category: ["", Validators.required],
       price: ["", Validators.required],
     });
   }
