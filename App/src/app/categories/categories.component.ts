@@ -26,10 +26,10 @@ import { FormsModule } from '@angular/forms';
 export class CategoriesComponent {
   selectedCategories : { [key: string]: boolean }  = {
     all: false,
-    phones: false,
-    laptops: false,
-    gaming: false,
-    desktops: false
+    Phones: false,
+    Laptops: false,
+    Gaming: false,
+    Desktops: false
   };
 
   filteredProducts: any[] = [];
