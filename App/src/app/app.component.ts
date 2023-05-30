@@ -111,7 +111,7 @@ export class AppComponent implements AfterViewInit {
   addProduct() {
     if (this.productForm.valid) {
       const newProduct: PRODUCT_MODEL = this.productForm.value;
-      const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NzA2NWYwMy05NTgwLTQ2ZDAtOTBhNi01NmMxZWRlNmYwZTkiLCJlbWFpbCI6ImpvbmF0aGFubmRhbWJ1a2lAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6Ik5kYW1idWtpIiwiaXNEZWxldGVkIjowLCJpc0FkbWluIjowLCJlbWFpbHNSZWNlaXZlZCI6MCwiaWF0IjoxNjg1MTg2NTYzLCJleHAiOjE2ODU1NDY1NjN9.ZEU2ygQJX-nDA-1IwnSZfdO2PQCd4qsv1DKr7iLySzc`;
+      const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiNzM1NGI0Yy0yMjg1LTRjZGItODA5ZS0zODFiNjI4NTU0ZWUiLCJlbWFpbCI6ImpvbmF0aGFubmRhbWJ1a2lAZ21haWwuY29tIiwiZmlyc3ROYW1lIjoiSm9uYXRoYW4iLCJsYXN0TmFtZSI6Ik5kYW1idWtpIiwiaXNEZWxldGVkIjowLCJpc0FkbWluIjowLCJlbWFpbHNSZWNlaXZlZCI6MCwiaWF0IjoxNjg1Mzc1MTQwLCJleHAiOjE2ODU3MzUxNDB9.naQ8HwtQC4DVWVJ9SYK9a-uqEXKb6U314wY0ODMO584`;
 
       this.productService.createProduct(newProduct, token).subscribe((response: any) => {
         console.log(response);

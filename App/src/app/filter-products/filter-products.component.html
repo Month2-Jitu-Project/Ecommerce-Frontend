@@ -1,0 +1,21 @@
+<p>filter-products works!</p>
+<h1>Product List</h1>
+
+<input type="checkbox" id="allCategories" [(ngModel)]="selectedCategories.all" (change)="filterProducts()">
+<label for="allCategories">All Categories</label>
+
+<input type="checkbox" id="phones" [(ngModel)]="selectedCategories.phones" (change)="filterProducts()">
+<label for="phones">Phones</label>
+
+<input type="checkbox" id="laptops" [(ngModel)]="selectedCategories.laptops" (change)="filterProducts()">
+<label for="laptops">Laptops</label>
+
+<input type="checkbox" id="gaming" [(ngModel)]="selectedCategories.gaming" (change)="filterProducts()">
+<label for="gaming">Gaming</label>
+
+<input type="checkbox" id="desktops" [(ngModel)]="selectedCategories.desktops" (change)="filterProducts()">
+<label for="desktops">Desktops</label>
+
+<ul>
+  <li *ngFor="let product of filteredProducts">{{ product.name }}</li>
+</ul>

@@ -12,7 +12,7 @@ import { DisplayProductComponent } from './products/display_product/displayProdu
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './authentication/signin/signin.component';
 import { SignUpComponent } from './authentication/signup/signup.component';
 import { ResetpasswordComponent } from "./authentication/resetpassword/resetpassword.component";
@@ -44,7 +44,8 @@ import { ResetpasswordComponent } from "./authentication/resetpassword/resetpass
         CategoriesComponent,
         HttpClientModule,
         ReactiveFormsModule,
-        ResetpasswordComponent
+        ResetpasswordComponent,
+        FormsModule
     ]
 })
 export class AppModule { }
