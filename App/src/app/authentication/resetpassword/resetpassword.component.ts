@@ -9,51 +9,63 @@ import {
   faCartShopping,
   faArrowCircleUp,
   faLock,
-  faClose
+  faClose,
+  faFaceSurprise,
+  faFaceAngry,
+  IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from 'src/services/forms/shared.service';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'reset-password',
   standalone: true,
-  imports: [CommonModule,FontAwesomeModule],
+  imports: [CommonModule,FontAwesomeModule, ReactiveFormsModule],
   templateUrl: './resetpassword.component.html',
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent {
     // SET isActive STATE TO false
     isActive: boolean = false;
-    // INJECT SHARED SERVICE
-    constructor(private sharedService: SharedService) { }
 
+    resetForm!: FormGroup;
+
+    // INJECT SHARED SERVICE
+    constructor(private sharedService: SharedService, private formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
+      // CREATE FORM
+      this.resetForm = this.formBuilder.group({
+        email: ['', Validators.required],
+        userPassword: ['', Validators.required]
+      })
+
       this.sharedService.resetPasswordForm$.subscribe(active => {
         this.isActive = active;
       });
     }
     
-
     setResetPasswordActive():void {
       this.sharedService.openResetPasswordForm();
     }
 
-  
     // FONT AWESOME ICONS
-    homeIcon = faHome;
-    plusIcon = faPlusCircle;
-    cartIcon = faCartShopping;
-    upIcon = faArrowCircleUp;
-    lockIcon = faLock;
-    closeIcon = faClose;
+    homeIcon: IconDefinition = faHome;
+    plusIcon: IconDefinition = faPlusCircle;
+    cartIcon: IconDefinition = faCartShopping;
+    upIcon: IconDefinition = faArrowCircleUp;
+    lockIcon: IconDefinition = faLock;
+    closeIcon: IconDefinition = faClose;
+    angryEmoji: IconDefinition = faFaceAngry;
   
     // DEFAULT FORM INPUT VALUES
     defaultParams = {
       email: 'Email address...',
+      password: 'Enter new password'
     };
   
     ngAfterViewInit() {
-      console.log('Form initialized!');
+      
     }
   
     closeResetPasswordForm() {
@@ -61,7 +73,7 @@ export class ResetpasswordComponent {
     }
   
     resetPassword() {
-      console.log(this);
+      
     }
 
 }

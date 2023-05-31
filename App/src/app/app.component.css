@@ -197,7 +197,7 @@ header {
     color: #505050;
 }
 
-/* CAPITALIZE PRODUCT NAME FOR OVERALL COSISTENCY */
+/* CAPITALIZE INPUT FOR OVERALL COSISTENCY */
 .capitalize {
     text-transform: capitalize;
 }

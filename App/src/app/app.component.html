@@ -84,7 +84,7 @@
           </div>
 
           <div class="user-input-wrp">
-            <input type="text" class="input-text" formControlName="category" required>
+            <input type="text" class="input-text capitalize" formControlName="category" required>
             <span class="floating-label">
               {{ defaultParams.productCategory }}
             </span>
@@ -117,7 +117,7 @@
     </a>
     <!-- SIGN IN BUTTON -->
     <button class="sign-in-btn" (click)="setSignInActive()">
-      Sign In
+      {{ isSignedIn ? 'Sign Out': 'Sign In' }}
       <fa-icon [icon]="lockIcon"></fa-icon>
     </button>
   </div>
