@@ -27,6 +27,16 @@
           <span class="floating-label">
             {{ defaultParams.email }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signInForm.controls['email'].invalid && (signInForm.controls['email'].dirty || signInForm.controls['email'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              A valid email is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -34,6 +44,17 @@
           <span class="floating-label">
             {{ defaultParams.password }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signInForm.controls['userPassword'].invalid && (signInForm.controls['userPassword'].dirty || signInForm.controls['userPassword'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Password is required
+            </p>
+          </div>
+
         </div>
 
         <!-- SIGN IN BUTTON -->

@@ -27,6 +27,16 @@
           <span class="floating-label">
             {{ defaultParams.email }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Email is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -34,6 +44,16 @@
           <span class="floating-label">
             {{ defaultParams.userPassword }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['userPassword'].invalid && (signUpForm.controls['userPassword'].dirty || signUpForm.controls['userPassword'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Password is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -41,6 +61,16 @@
           <span class="floating-label">
             {{ defaultParams.firstName}}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['firstName'].invalid && (signUpForm.controls['firstName'].dirty || signUpForm.controls['firstName'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              First name is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -48,6 +78,16 @@
           <span class="floating-label">
             {{ defaultParams.lastName }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['lastName'].invalid && (signUpForm.controls['lastName'].dirty || signUpForm.controls['lastName'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Last name is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -55,6 +95,16 @@
           <span class="floating-label">
             {{ defaultParams.streetAddress }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['streetAddress'].invalid && (signUpForm.controls['streetAddress'].dirty || signUpForm.controls['streetAddress'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Street address is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -62,6 +112,16 @@
           <span class="floating-label">
             {{ defaultParams.city }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['city'].invalid && (signUpForm.controls['city'].dirty || signUpForm.controls['city'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              City is required
+            </p>
+          </div>
         </div>
 
         <div class="user-input-wrp">
@@ -69,6 +129,17 @@
           <span class="floating-label">
             {{ defaultParams.country }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['country'].invalid && (signUpForm.controls['country'].dirty || signUpForm.controls['country'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Country is required
+            </p>
+          </div>
+
         </div>
 
         <div class="user-input-wrp">
@@ -76,6 +147,17 @@
           <span class="floating-label">
             {{ defaultParams.phone }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="signUpForm.controls['phone'].invalid && (signUpForm.controls['phone'].dirty || signUpForm.controls['phone'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Phone number is required
+            </p>
+          </div>
+
         </div>
         <!-- SIGN UP BUTTON -->
         <button class="signUpBtn" (click)="signUp()">
@@ -86,4 +168,4 @@
     </form>
   </div>
 </div>
- <!--=====================================-->
+<!--=====================================-->

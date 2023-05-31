@@ -120,6 +120,23 @@
     color: var(--folly);
 }
 
+/* INPUT ERROR STYLING */
+.error-message {
+    width: 100%;
+    text-align: right;
+    margin-top: -1rem;
+    margin-bottom: 1.2rem;
+    white-space: nowrap;
+    animation: glow 1s infinite;
+}
+
+.error-message p {
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    font-size: .8rem;
+    color: var(--folly);
+}
+
 .signInBtn {
     width: 100%;
     border: none;
@@ -137,7 +154,7 @@
     transition: .4s all ease;
 }
 
-.forgotPasswordBtn{
+.forgotPasswordBtn {
     width: 100%;
     border: none;
     border-radius: 24px 0;
@@ -156,7 +173,8 @@
 
 }
 
-.signInBtn:hover,.forgotPasswordBtn:hover {
+.signInBtn:hover,
+.forgotPasswordBtn:hover {
     transform: translateY(-4px);
     box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
@@ -176,7 +194,39 @@
 ********** ANIMATIONS **********
 *******************************/
 
+/*
+*----------------------------------------
+* GLOW ANIMATION FOR INPUT ERROR MESSAGE
+*---------------------------------------
+*/
 
+@-webkit-keyframes glow {
+    0% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .7;
+    }
+}
+
+@keyframes glow {
+    0% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .7;
+    }
+}
 
 /*
 *----------------------------------
@@ -250,3 +300,15 @@
     }
 }
 
+
+/* MEDIA QUERIES */
+@media (max-width:320px) {
+    .sticky {
+        top: 5%;
+        right: 5%;
+    }
+
+    .sign-in-form {
+        width: 19rem;
+    }
+}

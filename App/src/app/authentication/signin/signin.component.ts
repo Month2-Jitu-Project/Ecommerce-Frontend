@@ -2,14 +2,14 @@
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceSurprise } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceSurprise, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 // This service handles the displaying of pop up forms
 import { SharedService } from '../../../services/forms/shared.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from 'src/services/users/users.service';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // THE @Component DECORATOR INDICATES THAT THIS
@@ -21,7 +21,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule]
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   // SET isActive STATE TO false
   isActive: boolean = false;
 
@@ -35,6 +35,7 @@ export class SignInComponent {
   upIcon: IconDefinition = faArrowCircleUp;
   lockIcon: IconDefinition = faLock;
   closeIcon: IconDefinition = faClose;
+  warningIcon: IconDefinition = faExclamationTriangle;
   surprisedEmoji: IconDefinition = faFaceSurprise;
 
   // DEFAULT FORM INPUT VALUES
@@ -48,13 +49,19 @@ export class SignInComponent {
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      userPassword: ["", Validators.required]
+      email: ["", [Validators.required, this.EMAIL_PATTERN_VALIDATOR()]],
+      userPassword: ["", [Validators.required]]
     })
 
     this.sharedService.signInForm$.subscribe(active => {
       this.isActive = active;
     });
+  }
+
+  // EMAIL VALIDATOR
+  EMAIL_PATTERN_VALIDATOR() {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return Validators.pattern(emailPattern);
   }
 
   //PROPERTY TO HOLD ACTIVE STATE

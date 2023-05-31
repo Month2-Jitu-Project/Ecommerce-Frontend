@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faExclamationTriangle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 // IMPORT ANGULAR FORMS
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -29,6 +29,27 @@ export class SignUpComponent {
 
   signUpForm!: FormGroup;
 
+  // FONT AWESOME ICONS
+  homeIcon: IconDefinition = faHome;
+  plusIcon: IconDefinition = faPlusCircle;
+  cartIcon: IconDefinition = faCartShopping;
+  upIcon: IconDefinition = faArrowCircleUp;
+  lockIcon: IconDefinition = faLock;
+  closeIcon: IconDefinition = faClose;
+  warningIcon: IconDefinition = faExclamationTriangle;
+
+  // DEFAULT FORM INPUT VALUES
+  defaultParams = {
+    email: 'Email address...',
+    userPassword: 'Password...',
+    firstName: 'First name...',
+    lastName: 'Last name...',
+    streetAddress: 'Street address',
+    city: 'City',
+    country: 'Country',
+    phone: 'Phone number...'
+  };
+
   // INJECT SHARED SERVICE & FORM CLASSES
   constructor(private sharedService: SharedService, private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -50,26 +71,6 @@ export class SignUpComponent {
     });
   }
 
-  // FONT AWESOME ICONS
-  homeIcon = faHome;
-  plusIcon = faPlusCircle;
-  cartIcon = faCartShopping;
-  upIcon = faArrowCircleUp;
-  lockIcon = faLock;
-  closeIcon = faClose;
-
-  // DEFAULT FORM INPUT VALUES
-  defaultParams = {
-    email: 'Email address...',
-    userPassword: 'Password...',
-    firstName: 'First name...',
-    lastName: 'Last name...',
-    streetAddress: 'Street address',
-    city: 'City',
-    country: 'Country',
-    phone: 'Phone number...'
-  };
-
   // METHOD FOR CLOSING SignUpForm
   closeSignUpForm() {
     this.sharedService.closeSignUpForm();
@@ -78,13 +79,13 @@ export class SignUpComponent {
   signUp() {
     if (this.signUpForm.valid) {
       const newUser: USER_MODEL = this.signUpForm.value;
-      
+
       this.userService.createUser(newUser).subscribe((response: any) => {
         console.log(response);
       },
-      (error: any) => {
-        console.error(error);
-      });
+        (error: any) => {
+          console.error(error);
+        });
     }
   }
 }

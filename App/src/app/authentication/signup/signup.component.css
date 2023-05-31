@@ -100,7 +100,6 @@
     color: var(--folly);
 }
 
-
 .user-input-wrp {
     position: relative;
     width: 100%;
@@ -133,6 +132,23 @@
     left: 10px;
     font-size: 13px;
     opacity: 1;
+    color: var(--folly);
+}
+
+/* INPUT ERROR STYLING */
+.error-message {
+    width: 100%;
+    text-align: right;
+    margin-top: -1rem;
+    margin-bottom: 1.2rem;
+    white-space: nowrap;
+    animation: glow 1s infinite;
+}
+
+.error-message p {
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    font-size: .8rem;
     color: var(--folly);
 }
 
@@ -173,6 +189,39 @@
 *******************************/
 
 
+/*
+*----------------------------------------
+* GLOW ANIMATION FOR INPUT ERROR MESSAGE
+*---------------------------------------
+*/
+
+@-webkit-keyframes glow {
+    0% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .7;
+    }
+}
+
+@keyframes glow {
+    0% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .7;
+    }
+}
 
 /*
 *----------------------------------
