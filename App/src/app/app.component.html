@@ -116,7 +116,7 @@
       Sign Up
     </a>
     <!-- SIGN IN BUTTON -->
-    <button class="sign-in-btn" (click)="setSignInActive()">
+    <button #signInButtonElem class="sign-in-btn" (click)="setSignInActive()">
       {{ isSignedIn ? 'Sign Out': 'Sign In' }}
       <fa-icon [icon]="lockIcon"></fa-icon>
     </button>

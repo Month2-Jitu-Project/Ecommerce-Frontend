@@ -9,8 +9,7 @@ import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
     providedIn: 'root'
 })
 export class UserService {
-    private USERS_URL = 'http://localhost:4000/users';
-    private LOGIN_URL = 'http://localhost:4000/users/login';
+    private BASE_URL = 'http://localhost:4000';
     private users: USER_MODEL[] = [];
     private usersSubject: Subject<USER_MODEL[]> = new Subject<USER_MODEL[]>();
 
@@ -18,7 +17,7 @@ export class UserService {
 
     // GET ALL USERS
     getUsers(): Observable<any[]> {
-        return this.http.get<any[]>(this.USERS_URL);
+        return this.http.get<any[]>(this.BASE_URL + '/users');
     }
 
     fetchUsers(): void {
@@ -44,7 +43,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<any>(this.USERS_URL, user, { headers });
+        return this.http.post<any>(this.BASE_URL + '/users', user, { headers });
     }
 
     // LOGIN USER 
@@ -52,7 +51,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<any>(this.LOGIN_URL, user, { headers }).pipe(map(response => {
+        return this.http.post<any>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
             const token = response.token;
             return { response, token } as RESPONSE_MODEL;
         }));
@@ -69,5 +68,6 @@ export class UserService {
     }
 
     // RESET USER PASSWORD
-    
+    // http://localhost:8000/reset/stacknewbie@gmail.com
+
 }

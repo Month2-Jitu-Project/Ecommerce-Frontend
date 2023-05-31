@@ -1,5 +1,5 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 // IMPORT FONTAWESOME ICONS
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -33,48 +33,19 @@ export class AppComponent implements AfterViewInit {
   // LOGIN STATUS
   isSignedIn: boolean = false;
 
-  setCategoriesActive(): void {
-    this.sharedService.openCategoriesForm();
-  }
-
-  // INJECT SERVICES & FORM CLASSES
-  constructor(private sharedService: SharedService, private productService: ProductService, private userService: UserService, private formBuilder: FormBuilder) { }
-
-  //////////////////////////////////////////
-  //    METHODS TO UPDATE ACTIVE STATE    //
-  //////////////////////////////////////////
-  setSignUpActive(): void {
-    this.sharedService.openSignUpForm();
-  }
-
-  // METHOD TO HANDLE FORM POP UPS
-  setSignInActive(): void {
-    // IF isSignedIn IS EQUAL TO true
-    // EXECUTE Sign Out LOGIC
-    if (this.isSignedIn) {
-      localStorage.clear();
-      this.isSignedIn = false;
-      // ELSE OPEN SignIn FORM
-    } else {
-      // EVALUATE TO true IF USER IS SIGNED IN
-    // this.isSignedIn = !this.isSignedIn;
-      this.sharedService.openSignInForm();
-    }
-  }
-
   // LOGO IMAGE URLs
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';
 
   // FONT AWESOME ICONS
   homeIcon: IconDefinition = faHome;
-  plusIcon = faPlusCircle;
-  cartIcon = faCartShopping;
-  bagIcon = faBagShopping;
-  upIcon = faArrowCircleUp;
-  lockIcon = faLock;
-  closeIcon = faClose;
-  ellipsisIcon = faEllipsis;
+  plusIcon: IconDefinition = faPlusCircle;
+  cartIcon: IconDefinition = faCartShopping;
+  bagIcon: IconDefinition = faBagShopping;
+  upIcon: IconDefinition = faArrowCircleUp;
+  lockIcon: IconDefinition = faLock;
+  closeIcon: IconDefinition = faClose;
+  ellipsisIcon: IconDefinition = faEllipsis;
 
   // DEFAULT FORM INPUT VALUES
   defaultParams = {
@@ -84,6 +55,36 @@ export class AppComponent implements AfterViewInit {
     productCategory: 'Enter category...',
     productDescription: 'Enter description...',
   };
+
+  // INJECT SERVICES & FORM CLASSES
+  constructor(private sharedService: SharedService, private productService: ProductService, private userService: UserService, private formBuilder: FormBuilder) { }
+
+  //////////////////////////////////////////
+  //    METHODS TO UPDATE ACTIVE STATE    //
+  //////////////////////////////////////////
+  setCategoriesActive(): void {
+    this.sharedService.openCategoriesForm();
+  }
+
+  setSignUpActive(): void {
+    this.sharedService.openSignUpForm();
+  }
+
+  // METHOD TO HANDLE FORM POP UPS
+  setSignInActive(): void {
+    // IF isSignedIn IS EQUAL TO true
+    // EXECUTE Sign Out LOGIC
+    if (this.isSignedIn) {
+      // CLEAR LOCAL STORAGE
+      localStorage.clear();
+      // SET isSignedIn STATE TO false WHEN Sign Out BUTTON IS CLICKED
+      this.isSignedIn = false;
+      // ELSE OPEN SignIn FORM
+    } else {
+      this.sharedService.openSignInForm();
+    }
+  }
+
 
   ngOnInit() {
     // CHECK THE STATE OF LOCAL STORAGE

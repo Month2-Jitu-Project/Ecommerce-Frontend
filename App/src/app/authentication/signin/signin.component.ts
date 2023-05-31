@@ -1,6 +1,6 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceSurprise } from '@fortawesome/free-solid-svg-icons';
@@ -27,25 +27,6 @@ export class SignInComponent {
   // INITIALIZE SIGN in FORM
   signInForm!: FormGroup;
 
-  // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.signInForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      userPassword: ["", Validators.required]
-    })
-
-    this.sharedService.signInForm$.subscribe(active => {
-      this.isActive = active;
-    });
-  }
-
-  //PROPERTY TO HOLD ACTIVE STATE
-  setResetPasswordActive():void {
-    this.sharedService.openResetPasswordForm();
-  }
-
   // FONT AWESOME ICONS
   homeIcon: IconDefinition = faHome;
   plusIcon: IconDefinition = faPlusCircle;
@@ -61,8 +42,27 @@ export class SignInComponent {
     password: 'Password...',
   };
 
+  // INJECT SHARED SERVICE
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.signInForm = this.formBuilder.group({
+      email: ["", Validators.required],
+      userPassword: ["", Validators.required]
+    })
+
+    this.sharedService.signInForm$.subscribe(active => {
+      this.isActive = active;
+    });
+  }
+
+  //PROPERTY TO HOLD ACTIVE STATE
+  setResetPasswordActive(): void {
+    this.sharedService.openResetPasswordForm();
+  }
+
   ngAfterViewInit() {
-    
+
   }
 
   closeSignInForm() {
@@ -83,14 +83,14 @@ export class SignInComponent {
         // RETRIEVE TOKEN FROM REQUEST
         const token = signInResponse.token;
 
-        console.log('RESPONSE : ', response);
+        // DISPLAY SUCCESS STATE TO THE UI
 
         // SAVE TOKEN TO LOCAL STORAGE
         localStorage.setItem('token', token);
       },
-      (error: any) => {
-        console.error(error);
-      });
+        (error: any) => {
+          console.error(error);
+        });
     }
   }
 }
