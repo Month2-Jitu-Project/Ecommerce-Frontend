@@ -1,6 +1,5 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceSurprise } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { UserService } from 'src/services/users/users.service';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -42,8 +43,8 @@ export class SignInComponent {
     password: 'Password...',
   };
 
-  // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
+  // INJECT SERVICES & MODULAR SERVICES
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
@@ -87,6 +88,10 @@ export class SignInComponent {
 
         // SAVE TOKEN TO LOCAL STORAGE
         localStorage.setItem('token', token);
+
+        // RELOAD PAGE ON SIGN IN
+        this.router.navigate([this.route.snapshot.url]);
+
       },
         (error: any) => {
           console.error(error);

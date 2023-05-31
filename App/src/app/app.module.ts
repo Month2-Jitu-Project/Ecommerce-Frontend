@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './authentication/signin/signin.component';
 import { SignUpComponent } from './authentication/signup/signup.component';
 import { ResetpasswordComponent } from "./authentication/resetpassword/resetpassword.component";
+import { RouterModule } from '@angular/router';
 
 
 // THE NgModule DECORATOR INDICATES THAT

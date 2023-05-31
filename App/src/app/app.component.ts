@@ -20,7 +20,7 @@ import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
 @Component({
   selector: 'app-root', // CUSTOM HTML SELECTOR
   templateUrl: './app.component.html', // LINK TO HTML
-  styleUrls: ['./app.component.css'], // LINK TO CSS
+  styleUrls: ['./app.component.css'] // LINK TO CSS
 })
 export class AppComponent implements AfterViewInit {
   // SELECT ADD PRODUCT FORM : Note @ViewChild can only select one Element
