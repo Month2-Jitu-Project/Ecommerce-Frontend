@@ -2,7 +2,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 // IMPORT ANGULAR FORMS
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -10,8 +10,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 // SERVICES
 import { SharedService } from '../services/forms/shared.service';
 import { ProductService } from 'src/services/products/products.service';
-import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
 import { UserService } from 'src/services/users/users.service';
+
+// MODELS
+import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -28,6 +30,9 @@ export class AppComponent implements AfterViewInit {
   // INITIALIZE PRODUCT FORM
   productForm!: FormGroup;
 
+  // LOGIN STATUS
+  isSignedIn: boolean = false;
+
   setCategoriesActive(): void {
     this.sharedService.openCategoriesForm();
   }
@@ -38,21 +43,31 @@ export class AppComponent implements AfterViewInit {
   //////////////////////////////////////////
   //    METHODS TO UPDATE ACTIVE STATE    //
   //////////////////////////////////////////
-  setSignUpActive(): void {               //
-    this.sharedService.openSignUpForm();  //
-  }                                       //
-  //
-  setSignInActive(): void {               //
-    this.sharedService.openSignInForm();  //
-  }                                       //
-  //////////////////////////////////////////
+  setSignUpActive(): void {
+    this.sharedService.openSignUpForm();
+  }
+
+  // METHOD TO HANDLE FORM POP UPS
+  setSignInActive(): void {
+    // IF isSignedIn IS EQUAL TO true
+    // EXECUTE Sign Out LOGIC
+    if (this.isSignedIn) {
+      localStorage.clear();
+      this.isSignedIn = false;
+      // ELSE OPEN SignIn FORM
+    } else {
+      // EVALUATE TO true IF USER IS SIGNED IN
+    // this.isSignedIn = !this.isSignedIn;
+      this.sharedService.openSignInForm();
+    }
+  }
 
   // LOGO IMAGE URLs
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';
 
   // FONT AWESOME ICONS
-  homeIcon = faHome;
+  homeIcon: IconDefinition = faHome;
   plusIcon = faPlusCircle;
   cartIcon = faCartShopping;
   bagIcon = faBagShopping;
@@ -66,12 +81,14 @@ export class AppComponent implements AfterViewInit {
     productName: 'Enter product name...',
     productImage: 'Enter image URL...',
     productPrice: 1000,
-    productCategory: 'Enter category...', 
+    productCategory: 'Enter category...',
     productDescription: 'Enter description...',
   };
 
-  // CREATE REACTIVE FORM
   ngOnInit() {
+    // CHECK THE STATE OF LOCAL STORAGE
+    this.isSignedIn = (localStorage.getItem('token') !== null);
+    // CREATE REACTIVE FORM
     this.productForm = this.formBuilder.group({
       productName: ["", Validators.required],
       productImage: ["", Validators.required],
