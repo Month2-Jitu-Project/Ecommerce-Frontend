@@ -13,6 +13,7 @@ import { SharedService } from 'src/services/forms/shared.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoriesService } from 'src/services/categories/categories.service';
 import { FormsModule } from '@angular/forms';
+import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
 
 @Component({
   selector: 'app-categories',
@@ -32,23 +33,38 @@ export class CategoriesComponent {
     Desktops: false
   };
 
-  filteredProducts: any[] = [];
+  filteredProducts: PRODUCT_MODEL[] = [];
+
+  // INJECT SHARED SERVICE
+  constructor(private sharedService: SharedService,private categoriesService:CategoriesService) { }
 
   filterProducts() {
     const selectedCategories = Object.keys(this.selectedCategories)
       .filter(category => this.selectedCategories[category]);
 
-    this.categoriesService.getFilteredProducts(selectedCategories)
-      .subscribe(response => {
-        this.filteredProducts = response.products;
-      });
+      console.log('Selected Categories',selectedCategories);
+
+      this.categoriesService.getFilteredProducts(selectedCategories)
+    .subscribe(response => {
+      console.log('Response',response); 
+
+      if (response && response.products) {
+        this.filteredProducts = response.products.filter((product: PRODUCT_MODEL) => {
+          return selectedCategories.includes(product.category);
+        });
+        console.log('Filtered Products',this.filteredProducts)
+      } else {
+        this.filteredProducts = [];
+        console.log('No products found')
+      }
+
+    });
   }
 
 
    // SET isActive STATE TO false
    isActive: boolean = false;
-   // INJECT SHARED SERVICE
-   constructor(private sharedService: SharedService,private categoriesService:CategoriesService) { }
+   
  
    ngOnInit(): void {
      this.sharedService.categoriesForm$.subscribe(active => {
