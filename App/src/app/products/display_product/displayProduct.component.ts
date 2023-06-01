@@ -19,10 +19,7 @@ import { ProductFilterService } from 'src/services/filterproducts/productfilters
 })
 export class DisplayProductComponent implements OnInit {
 
-  // @Input()  filteredProducts: PRODUCT_MODEL[] = [];
-
   products: any[] = [];
-  allProducts: PRODUCT_MODEL[] = [];
   filteredProducts: PRODUCT_MODEL[] = [];
 
   constructor(private productService: ProductService,private productFilterService: ProductFilterService) { }
