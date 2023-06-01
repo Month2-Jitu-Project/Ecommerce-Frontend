@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoriesService } from 'src/services/categories/categories.service';
 import { FormsModule } from '@angular/forms';
 import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
-import { ProductFilterService } from 'src/services/filterproducts/productfilterservice';
+import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
 
 
 @Component({

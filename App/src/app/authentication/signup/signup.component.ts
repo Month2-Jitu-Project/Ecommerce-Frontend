@@ -56,8 +56,8 @@ export class SignUpComponent {
   ngOnInit() {
     // CREATE FORM
     this.signUpForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      userPassword: ["", Validators.required],
+      email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
+      userPassword: ["", [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]],
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
       streetAddress: ["", Validators.required],

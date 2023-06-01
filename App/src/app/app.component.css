@@ -246,6 +246,23 @@ This selector targets the ".floating-label" element that comes after an input el
     color: var(--folly);
 }
 
+/* INPUT ERROR STYLING */
+.error-message {
+    width: 100%;
+    text-align: right;
+    margin-top: -1rem;
+    margin-bottom: 1.2rem;
+    white-space: nowrap;
+    animation: glow 1s infinite;
+}
+
+.error-message p {
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    font-size: .8rem;
+    color: var(--folly);
+}
+
 /*
 *--------------------------------
 *ADD PRODUCT FORM : ACTIVE STATE
@@ -277,6 +294,12 @@ This selector targets the ".floating-label" element that comes after an input el
     box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
+.addProductBtn[disabled] {
+    /* Add your desired styles here */
+    background-color: gray;
+    color: white;
+    /* ... */
+  }
 /*
 *--------------------
 *   ACTION BUTTONS

@@ -11,6 +11,7 @@ import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -45,23 +46,17 @@ export class SignInComponent implements OnInit {
   };
 
   // INJECT SERVICES & MODULAR SERVICES
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private router: Router, private route: ActivatedRoute, private pageReloaderService: PageReloaderService) { }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
-      email: ["", [Validators.required, this.EMAIL_PATTERN_VALIDATOR()]],
+      email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
       userPassword: ["", [Validators.required]]
     })
 
     this.sharedService.signInForm$.subscribe(active => {
       this.isActive = active;
     });
-  }
-
-  // EMAIL VALIDATOR
-  EMAIL_PATTERN_VALIDATOR() {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return Validators.pattern(emailPattern);
   }
 
   //PROPERTY TO HOLD ACTIVE STATE
@@ -83,7 +78,7 @@ export class SignInComponent implements OnInit {
   signIn() {
     if (this.signInForm.valid) {
       const user: LOGIN_MODEL = this.signInForm.value;
-
+      // EXECUTE SERVICE
       this.userService.loginUser(user).subscribe((signInResponse: RESPONSE_MODEL) => {
 
         // RETRIEVE RESPONSE FROM REQUEST
@@ -97,8 +92,7 @@ export class SignInComponent implements OnInit {
         localStorage.setItem('token', token);
 
         // RELOAD PAGE ON SIGN IN
-        this.router.navigate([this.route.snapshot.url]);
-
+        this.pageReloaderService.refreshRoute();
       },
         (error: any) => {
           console.error(error);

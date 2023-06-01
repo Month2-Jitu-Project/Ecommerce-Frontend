@@ -4,12 +4,14 @@ import { Observable, Subject, map } from 'rxjs';
 import { USER_MODEL } from '../../abstract_classes/user.model';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
+import { Validators } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
     private BASE_URL = 'http://localhost:4000';
+    private PASSWORD_RESET_URL = 'http://localhost:8000/reset/password';
     private users: USER_MODEL[] = [];
     private usersSubject: Subject<USER_MODEL[]> = new Subject<USER_MODEL[]>();
 
@@ -57,6 +59,14 @@ export class UserService {
         }));
     }
 
+    // RESET | UPDATE USER PASSWORD
+    resetUserPassword(user: LOGIN_MODEL): Observable<RESPONSE_MODEL> {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+        return this.http.put<any>(this.PASSWORD_RESET_URL + `/${user.email}`, user, { headers });
+    }
+
     // CHECK IF USER IS AUTHENTICATED i.e If they have a VALID token
     isAuthenticated() {
         const AUTHENTICATION_TOKEN = localStorage.getItem('token');
@@ -67,7 +77,18 @@ export class UserService {
         }
     }
 
-    // RESET USER PASSWORD
-    // http://localhost:8000/reset/stacknewbie@gmail.com
+    ///////////////////////////////
+    // CUSTOM PATTERN VALIDATORS //
+    ///////////////////////////////
+    // EMAIL PATTERN VALIDATOR
+    EMAIL_PATTERN_VALIDATOR() {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return Validators.pattern(emailPattern);
+    }
 
+    // PASSWORD PATTERN VALIDATOR
+    PASSWORD_PATTERN_VALIDATOR() {
+        const passwordPattern = /^[a-zA-Z0-9!@#]{3,30}$/;
+        return Validators.pattern(passwordPattern);
+    }
 }

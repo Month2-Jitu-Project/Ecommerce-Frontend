@@ -7,7 +7,7 @@ import { faTrashCan, faPlus, faCartShopping, faHeart, faEllipsis } from '@fortaw
 import { PRODUCT_MODEL } from '../../../abstract_classes/product.model';
 import { ProductService } from '../../../services/products/products.service';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
-import { ProductFilterService } from 'src/services/filterproducts/productfilterservice';
+import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({

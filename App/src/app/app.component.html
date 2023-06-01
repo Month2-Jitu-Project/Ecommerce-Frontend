@@ -66,6 +66,16 @@
           <span class="floating-label">
             {{ defaultParams.productName }}
           </span>
+
+          <!-- ERROR MESSAGE -->
+          <div
+            *ngIf="productForm.controls['productName'].invalid && (productForm.controls['productName'].dirty || productForm.controls['productName'].touched)"
+            class="error-message">
+            <p>
+              <fa-icon [icon]="warningIcon"></fa-icon>
+              Product name is required
+            </p>
+          </div>
         </div>
 
         <div class="product-form-input">
@@ -74,6 +84,16 @@
             <span class="floating-label">
               {{ defaultParams.productImage }}
             </span>
+
+            <!-- ERROR MESSAGE -->
+            <div
+              *ngIf="productForm.controls['productImage'].invalid && (productForm.controls['productImage'].dirty || productForm.controls['productImage'].touched)"
+              class="error-message">
+              <p>
+                <fa-icon [icon]="warningIcon"></fa-icon>
+                Product image is required
+              </p>
+            </div>
           </div>
 
           <div class="user-input-wrp">
@@ -81,6 +101,16 @@
             <span class="floating-label">
               {{ defaultParams.productDescription }}
             </span>
+
+            <!-- ERROR MESSAGE -->
+            <div
+              *ngIf="productForm.controls['productDescription'].invalid && (productForm.controls['productDescription'].dirty || productForm.controls['productDescription'].touched)"
+              class="error-message">
+              <p>
+                <fa-icon [icon]="warningIcon"></fa-icon>
+                Product description is required
+              </p>
+            </div>
           </div>
 
           <div class="user-input-wrp">
@@ -88,6 +118,16 @@
             <span class="floating-label">
               {{ defaultParams.productCategory }}
             </span>
+
+            <!-- ERROR MESSAGE -->
+            <div
+              *ngIf="productForm.controls['category'].invalid && (productForm.controls['category'].dirty || productForm.controls['category'].touched)"
+              class="error-message">
+              <p>
+                <fa-icon [icon]="warningIcon"></fa-icon>
+                Product category is required
+              </p>
+            </div>
           </div>
 
           <div class="user-input-wrp">
@@ -95,11 +135,21 @@
             <span class="floating-label">
               {{ defaultParams.productPrice | currency }}
             </span>
+
+            <!-- ERROR MESSAGE -->
+            <div
+              *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched)"
+              class="error-message">
+              <p>
+                <fa-icon [icon]="warningIcon"></fa-icon>
+                Product price is required
+              </p>
+            </div>
           </div>
 
 
           <!-- ADD PRODUCT BUTTON -->
-          <button class="addProductBtn" (click)="addProduct()">
+          <button class="addProductBtn" (click)="addProduct()" [disabled]="!productForm.valid">
             <fa-icon [icon]="upIcon"></fa-icon>
             Add product
           </button>

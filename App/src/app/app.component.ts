@@ -2,7 +2,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 // IMPORT ANGULAR FORMS
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -46,7 +46,8 @@ export class AppComponent implements AfterViewInit {
   lockIcon: IconDefinition = faLock;
   closeIcon: IconDefinition = faClose;
   ellipsisIcon: IconDefinition = faEllipsis;
-
+  warningIcon: IconDefinition = faExclamationTriangle;
+  
   // DEFAULT FORM INPUT VALUES
   defaultParams = {
     productName: 'Enter product name...',
