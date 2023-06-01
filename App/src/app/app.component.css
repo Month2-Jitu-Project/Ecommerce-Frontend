@@ -214,7 +214,7 @@ header {
     color: #9c9c9c;
 }
 
- /*
+/*
  * ---------------------------------------------------------
   .user-input-wrp input:focus~.floating-label: 
 
@@ -299,7 +299,8 @@ This selector targets the ".floating-label" element that comes after an input el
     background-color: gray;
     color: white;
     /* ... */
-  }
+}
+
 /*
 *--------------------
 *   ACTION BUTTONS
@@ -310,14 +311,16 @@ This selector targets the ".floating-label" element that comes after an input el
     display: none;
 }
 
-.plus-icon, .ellipsis-icon {
+.plus-icon,
+.ellipsis-icon {
     color: var(--folly);
     font-size: 1.8rem;
     cursor: pointer;
     transition: .4s all ease;
 }
 
-.plus-icon:hover, .ellipsis-icon:hover {
+.plus-icon:hover,
+.ellipsis-icon:hover {
     transform: scale(.8);
 }
 
@@ -355,7 +358,6 @@ This selector targets the ".floating-label" element that comes after an input el
     transition: .4s all ease;
     cursor: pointer;
     opacity: .8;
-
 }
 
 .sign-in-btn:hover {
@@ -719,7 +721,7 @@ This selector targets the ".floating-label" element that comes after an input el
         align-items: center;
         gap: 1.5rem;
     }
-    
+
     .cta {
         display: none;
     }
@@ -741,7 +743,7 @@ This selector targets the ".floating-label" element that comes after an input el
         font-size: 1rem;
         font-weight: 400;
     }
-    
+
     .welcome-title span {
         transform: rotate(0deg);
         font-size: 1.5rem;

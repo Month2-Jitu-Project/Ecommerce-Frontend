@@ -4,7 +4,7 @@ import { Observable, Subject, map } from 'rxjs';
 import { USER_MODEL } from '../../abstract_classes/user.model';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
@@ -60,12 +60,19 @@ export class UserService {
     }
 
     // RESET | UPDATE USER PASSWORD
-    resetUserPassword(user: LOGIN_MODEL): Observable<RESPONSE_MODEL> {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
-        return this.http.put<any>(this.PASSWORD_RESET_URL + `/${user.email}`, user, { headers });
+    resetUserPassword(form: FormGroup) {
+
+        const email = form.get('email')?.value;
+        const userPassword = form.get('userPassword')?.value;
+
+        const payload = {
+            email: email,
+            userPassword: userPassword
+        };
+
+        return this.http.put(`${this.PASSWORD_RESET_URL}/${email}`, payload);
     }
+
 
     // CHECK IF USER IS AUTHENTICATED i.e If they have a VALID token
     isAuthenticated() {

@@ -21,63 +21,72 @@ import { UserService } from 'src/services/users/users.service';
 @Component({
   selector: 'reset-password',
   standalone: true,
-  imports: [CommonModule,FontAwesomeModule, ReactiveFormsModule],
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
   templateUrl: './resetpassword.component.html',
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent {
-    // SET isActive STATE TO false
-    isActive: boolean = false;
+  // SET isActive STATE TO false
+  isActive: boolean = false;
 
-    resetForm!: FormGroup;
+  resetForm!: FormGroup;
 
-    // FONT AWESOME ICONS
-    homeIcon: IconDefinition = faHome;
-    plusIcon: IconDefinition = faPlusCircle;
-    cartIcon: IconDefinition = faCartShopping;
-    upIcon: IconDefinition = faArrowCircleUp;
-    lockIcon: IconDefinition = faLock;
-    closeIcon: IconDefinition = faClose;
-    warningIcon: IconDefinition = faExclamationTriangle;
-    angryEmoji: IconDefinition = faFaceAngry;
-  
-    // DEFAULT FORM INPUT VALUES
-    defaultParams = {
-      email: 'Email address...',
-      password: 'Enter new password'
-    };
-  
-    // INJECT SHARED SERVICE
-    constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
+  // FONT AWESOME ICONS
+  homeIcon: IconDefinition = faHome;
+  plusIcon: IconDefinition = faPlusCircle;
+  cartIcon: IconDefinition = faCartShopping;
+  upIcon: IconDefinition = faArrowCircleUp;
+  lockIcon: IconDefinition = faLock;
+  closeIcon: IconDefinition = faClose;
+  warningIcon: IconDefinition = faExclamationTriangle;
+  angryEmoji: IconDefinition = faFaceAngry;
 
-    ngOnInit(): void {
-      // CREATE FORM
-      this.resetForm = this.formBuilder.group({
-        email: ['', [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
-        userPassword: ['', [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]]
-      });
+  // DEFAULT FORM INPUT VALUES
+  defaultParams = {
+    email: 'Email address...',
+    password: 'Enter new password'
+  };
 
-      this.sharedService.resetPasswordForm$.subscribe(active => {
-        this.isActive = active;
-      });
-    }
-    
-    setResetPasswordActive():void {
-      this.sharedService.openResetPasswordForm();
-    }
+  // INJECT SHARED SERVICE
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
 
-    ngAfterViewInit() {
-      
+  ngOnInit(): void {
+    // CREATE FORM
+    this.resetForm = this.formBuilder.group({
+      email: ['', [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
+      userPassword: ['', [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]]
+    });
+
+    this.sharedService.resetPasswordForm$.subscribe(active => {
+      this.isActive = active;
+    });
+  }
+
+  setResetPasswordActive(): void {
+    this.sharedService.openResetPasswordForm();
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  closeResetPasswordForm() {
+    this.sharedService.closeResetForm();
+  }
+
+  // RESET PASSWORD
+  resetPassword() {
+    if (this.resetForm.valid) {
+      this.userService.resetUserPassword(this.resetForm).subscribe(() => {
+        this.resetForm.reset();
+      },
+        (error) => {
+          console.error(error)
+        }
+      );
+    } else {
+      console.error('Pssword reset not successful...');
     }
-  
-    closeResetPasswordForm() {
-      this.sharedService.closeResetForm();
-    }
-  
-    // 
-    resetPassword() {
-      console.log("Clicked!");
-      this.userService.resetUserPassword(this.resetForm.value);
-    }
+  }
 
 }
