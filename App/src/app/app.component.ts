@@ -86,7 +86,6 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-
   ngOnInit() {
     // CHECK THE STATE OF LOCAL STORAGE
     this.isSignedIn = (localStorage.getItem('token') !== null);

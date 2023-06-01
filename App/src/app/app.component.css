@@ -294,11 +294,10 @@ This selector targets the ".floating-label" element that comes after an input el
     box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
+/* DISABLED BUTTON STYLING */
 .addProductBtn[disabled] {
-    /* Add your desired styles here */
     background-color: gray;
     color: white;
-    /* ... */
 }
 
 /*

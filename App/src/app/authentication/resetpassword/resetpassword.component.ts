@@ -15,21 +15,21 @@ import {
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
 import { SharedService } from 'src/services/forms/shared.service';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { UserService } from 'src/services/users/users.service';
+import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
 
 @Component({
   selector: 'reset-password',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+  imports: [CommonModule, FontAwesomeModule, FormsModule, ReactiveFormsModule],
   templateUrl: './resetpassword.component.html',
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent {
+  resetForm!: FormGroup;
   // SET isActive STATE TO false
   isActive: boolean = false;
-
-  resetForm!: FormGroup;
 
   // FONT AWESOME ICONS
   homeIcon: IconDefinition = faHome;
@@ -48,7 +48,7 @@ export class ResetpasswordComponent {
   };
 
   // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService) { }
 
   ngOnInit(): void {
     // CREATE FORM
@@ -66,10 +66,6 @@ export class ResetpasswordComponent {
     this.sharedService.openResetPasswordForm();
   }
 
-  ngAfterViewInit() {
-
-  }
-
   closeResetPasswordForm() {
     this.sharedService.closeResetForm();
   }
@@ -78,15 +74,17 @@ export class ResetpasswordComponent {
   resetPassword() {
     if (this.resetForm.valid) {
       this.userService.resetUserPassword(this.resetForm).subscribe(() => {
+        // RESET FORM ON FORM SUBMIT & RELOAD ROUTE
         this.resetForm.reset();
+        this.pageReloaderService.refreshRoute();
       },
         (error) => {
-          console.error(error)
+          console.error(`ERROR : ${error}`);
         }
       );
+      // HANDLE CASES WHERE FORM IS NOT VALID
     } else {
       console.error('Pssword reset not successful...');
     }
   }
-
 }
