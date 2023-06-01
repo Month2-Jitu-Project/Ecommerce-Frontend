@@ -73,10 +73,11 @@ export class ResetpasswordComponent {
   // RESET PASSWORD
   resetPassword() {
     if (this.resetForm.valid) {
-      this.userService.resetUserPassword(this.resetForm).subscribe(() => {
+      this.userService.resetUserPassword(this.resetForm).subscribe((response) => {
         // RESET FORM ON FORM SUBMIT & RELOAD ROUTE
         this.resetForm.reset();
         this.pageReloaderService.refreshRoute();
+        console.log(response);
       },
         (error) => {
           console.error(`ERROR : ${error}`);

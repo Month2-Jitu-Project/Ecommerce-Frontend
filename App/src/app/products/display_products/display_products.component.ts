@@ -8,6 +8,7 @@ import { PRODUCT_MODEL } from '../../../abstract_classes/product.model';
 import { ProductService } from '../../../services/products/products.service';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
+import { UserService } from 'src/services/users/users.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -22,7 +23,7 @@ export class DisplayProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: PRODUCT_MODEL[] = [];
 
-  constructor(private productService: ProductService,private productFilterService: ProductFilterService) { }
+  constructor(private productService: ProductService,private productFilterService: ProductFilterService, private userService: UserService) { }
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -41,6 +42,12 @@ export class DisplayProductsComponent implements OnInit {
     this.productFilterService.filteredProducts$.subscribe(filteredProducts => {
       this.filteredProducts = filteredProducts;
     });
+  }
+
+  // CHECK IF USER IS AUTHENTICATED BEFORE
+  // ALLOW THE FOLLOWING METHODS TO EXECUTE
+  Authenticated() {
+    return this.userService.isAuthenticated();
   }
 
   ///////////////////////////////////////

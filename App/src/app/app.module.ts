@@ -17,6 +17,7 @@ import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddProductComponent } from './products/add_product/add_product.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -38,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
+        AddProductComponent,
         DisplayProductsComponent,
         DisplaySingleProductComponent,
         SignInComponent,

@@ -14,6 +14,8 @@ import { UserService } from 'src/services/users/users.service';
 
 // MODELS
 import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
+import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
+import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -23,16 +25,6 @@ import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
   styleUrls: ['./app.component.css'] // LINK TO CSS
 })
 export class AppComponent implements AfterViewInit {
-  // SELECT ADD PRODUCT FORM : Note @ViewChild can only select one Element
-  @ViewChild('addProductForm', { static: false })
-  elementRef!: ElementRef;
-
-  // INITIALIZE PRODUCT FORM
-  productForm!: FormGroup;
-
-  // LOGIN STATUS
-  isSignedIn: boolean = false;
-
   // LOGO IMAGE URLs
   logoImageURL = './assets/images/png/logo_color.png';
   logoImageURLalt = './assets/images/png/logo_color_cart.png';
@@ -47,22 +39,25 @@ export class AppComponent implements AfterViewInit {
   closeIcon: IconDefinition = faClose;
   ellipsisIcon: IconDefinition = faEllipsis;
   warningIcon: IconDefinition = faExclamationTriangle;
-  
-  // DEFAULT FORM INPUT VALUES
-  defaultParams = {
-    productName: 'Enter product name...',
-    productImage: 'Enter image URL...',
-    productPrice: 1000,
-    productCategory: 'Enter category...',
-    productDescription: 'Enter description...',
-  };
 
   // INJECT SERVICES & FORM CLASSES
-  constructor(private sharedService: SharedService, private productService: ProductService, private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private sharedService: SharedService, private userService: UserService) { }
+
+    // LOGIN STATUS
+    isSignedIn: boolean = false;
+
+    ngOnInit() {
+        // CHECK LOCAL STORAGE FOR AUTH TOKEN
+        this.isSignedIn = (localStorage.getItem('token') !== null);
+    }
 
   //////////////////////////////////////////
   //    METHODS TO UPDATE ACTIVE STATE    //
   //////////////////////////////////////////
+  setAddProductFormActive(): void {
+    this.sharedService.openAddProductForm();
+  }
+
   setCategoriesActive(): void {
     this.sharedService.openCategoriesForm();
   }
@@ -86,19 +81,6 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  ngOnInit() {
-    // CHECK THE STATE OF LOCAL STORAGE
-    this.isSignedIn = (localStorage.getItem('token') !== null);
-    // CREATE REACTIVE FORM
-    this.productForm = this.formBuilder.group({
-      productName: ["", Validators.required],
-      productImage: ["", Validators.required],
-      productDescription: ["", Validators.required],
-      category: ["", Validators.required],
-      price: ["", Validators.required],
-    });
-  }
-
   ngAfterViewInit() { }
 
   ///////////////////////////////////////////
@@ -108,41 +90,8 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-  /////////////////////////////////////////
-  //// METHOD FOR TOGGLING POP UP MENU ////
-  /////////////////////////////////////////
-  togglePopUp() {
-    // SELECT ADD PRODUCT FORM
-    const addProductForm = this.elementRef.nativeElement;
-    addProductForm.classList.add('active');
-  }
-
-  // METHOD FOR CLOSING ADD PRODUCT FORM | POP UP
-  closeForm() {
-    const addProductForm = this.elementRef.nativeElement;
-    addProductForm.classList.remove('active');
-  }
-
   // METHOD FOR CHECKING IF USER IS AUTHENTICATED
   Authenticated() {
     return this.userService.isAuthenticated();
-  }
-
-  ///////////////////////////////
-  // METHOD FOR ADDING PRODUCT //
-  ///////////////////////////////
-  addProduct() {
-    if (this.productForm.valid) {
-      const newProduct: PRODUCT_MODEL = this.productForm.value;
-      // GET TOKEN FROM LOCAL STORAGE
-      const token = localStorage.getItem('token') as string;
-
-      this.productService.createProduct(newProduct, token).subscribe((response: any) => {
-        console.log(response);
-      },
-        (error: any) => {
-          console.error(error);
-        });
-    }
   }
 }

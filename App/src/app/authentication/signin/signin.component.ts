@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  //PROPERTY TO HOLD ACTIVE STATE
+  // PROPERTY TO HOLD ACTIVE STATE
   setResetPasswordActive(): void {
     this.sharedService.openResetPasswordForm();
   }

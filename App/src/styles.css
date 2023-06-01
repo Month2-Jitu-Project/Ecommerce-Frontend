@@ -29,7 +29,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3c404b;
+    background: var(--white);
 }
 
 ::-webkit-scrollbar-track {

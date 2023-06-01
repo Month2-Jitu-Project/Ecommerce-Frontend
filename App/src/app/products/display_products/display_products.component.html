@@ -3,9 +3,9 @@
     <div class="product" *ngFor="let product of filteredProducts" >
     
         <div class="img-container">
-            <img loading="lazy" src="{{ product.productImage }}" alt="product image" class="product-img">
+            <img loading="lazy" draggable="false" src="{{ product.productImage }}" alt="product image" class="product-img">
             <!-- PRODUCT CARD ICONS -->
-            <div class="icon-container">
+            <div class="icon-container" *ngIf="Authenticated()">
                 <a class="addToCartBtn btn" (click)="addProductToCart()">
                     <fa-icon [icon]="cartIcon" class="icon"></fa-icon>
                 </a>

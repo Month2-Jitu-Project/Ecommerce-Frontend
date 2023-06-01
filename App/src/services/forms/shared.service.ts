@@ -10,6 +10,9 @@ import { Subject } from 'rxjs';
 })
 export class SharedService {
   // DEFINE PROPERTIES TO HOLD THE ACTIVE STATE
+  private addProductFormSubject = new Subject<boolean>();
+  addProductForm$ = this.addProductFormSubject.asObservable();
+
   private signInFormSubject = new Subject<boolean>();
   signInForm$ = this.signInFormSubject.asObservable();
 
@@ -30,6 +33,7 @@ export class SharedService {
     this.signUpFormSubject.next(false);
     this.resetPasswordFormSubject.next(false);
     this.categoriesFormSubject.next(false);
+    this.addProductFormSubject.next(false);
   }
 
   openSignUpForm(): void {
@@ -37,12 +41,14 @@ export class SharedService {
     this.signUpFormSubject.next(true);
     this.resetPasswordFormSubject.next(false);
     this.categoriesFormSubject.next(false);
+    this.addProductFormSubject.next(false);
   }
 
   openCategoriesForm(): void {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(true);
+    this.addProductFormSubject.next(false);
   }
 
   openResetPasswordForm(): void {
@@ -50,6 +56,15 @@ export class SharedService {
     this.signInFormSubject.next(false);
     this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(false);
+    this.addProductFormSubject.next(false);
+  }
+
+  openAddProductForm(): void {
+    this.resetPasswordFormSubject.next(false);
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
+    this.addProductFormSubject.next(true);
   }
 
   //////////////////////////////
@@ -65,11 +80,15 @@ export class SharedService {
     this.signUpFormSubject.next(false);
   }
 
+  closeResetForm(): void {
+    this.resetPasswordFormSubject.next(false);
+  }
+
   closeCategoriesForm(): void {
     this.categoriesFormSubject.next(false);
   }
 
-  closeResetForm(): void {
-    this.resetPasswordFormSubject.next(false);
+  closeAddProductForm(): void {
+    this.addProductFormSubject.next(false);
   }
 }
