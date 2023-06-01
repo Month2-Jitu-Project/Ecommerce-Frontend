@@ -1,11 +1,13 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // ICONS
 import { faTrashCan, faPlus, faCartShopping, faHeart, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { PRODUCT_MODEL } from '../../../abstract_classes/product.model';
 import { ProductService } from '../../../services/products/products.service';
+import { CategoriesComponent } from 'src/app/categories/categories.component';
+import { ProductFilterService } from 'src/services/filterproducts/productfilterservice';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -13,13 +15,14 @@ import { ProductService } from '../../../services/products/products.service';
   templateUrl: 'displayProduct.component.html', // LINK TO HTML 
   styleUrls: ['displayProduct.component.css'],  // LINK TO CSS  
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule]
+  imports: [CommonModule, FontAwesomeModule,CategoriesComponent]
 })
 export class DisplayProductComponent implements OnInit {
 
   products: any[] = [];
+  filteredProducts: PRODUCT_MODEL[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,private productFilterService: ProductFilterService) { }
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -32,6 +35,11 @@ export class DisplayProductComponent implements OnInit {
     this.productService.fetchProducts();
     this.productService.getStoredProducts().subscribe((products: PRODUCT_MODEL[]) => {
       this.products = products;
+      this.filteredProducts = products;
+    });
+
+    this.productFilterService.filteredProducts$.subscribe(filteredProducts => {
+      this.filteredProducts = filteredProducts;
     });
   }
 

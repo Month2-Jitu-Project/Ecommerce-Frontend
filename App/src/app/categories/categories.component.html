@@ -21,50 +21,38 @@
           </a>
         </div>
   
-        <div class="form-input">
-          <div class="user-input-wrp">
-             
-        <input type="checkbox" id="allCategories" name="allCategories"  value="allCategories" [(ngModel)]="selectedCategories['all']" (change)="filterProducts()">
-            <label for="allCategories">All Categories</label>
+        <!-- CATEGORIES CHECKBOXES -->
 
-       
-          </div>
-          <div class="user-input-wrp">
-             
+        <div class="allcategories">
+
+          <div class="checkboxes">
+<!-- 
+            <input class="categoriescheckbox" type="checkbox" id="allCategories" name="allCategories"  value="allCategories" [(ngModel)]="selectedCategories['all']" (change)="filterProducts()"> -->
+            
+    
             <input type="checkbox" id="phones" name="phones" value="Phones" [(ngModel)]="selectedCategories['phones']" (change)="filterProducts()">
-            <label for="checkbox1">Phones</label>
-
          
-          </div>
-  
-          <div class="user-input-wrp">
-            
+    
             <input type="checkbox" id="laptops" name="laptops" value="Laptops" [(ngModel)]="selectedCategories['laptops']" (change)="filterProducts()">
-            <label for="checkbox1">Laptops</label>
-
-            
-          </div>
-  
-          <div class="user-input-wrp">
-        
+         
+    
             <input type="checkbox" id="gaming" name="gaming" value="Gaming" [(ngModel)]="selectedCategories['gaming']" (change)="filterProducts()">
-            <label for="checkbox1">Gaming</label>
-
-          </div>
-  
-          <div class="user-input-wrp">
-
+          
+    
             <input type="checkbox" id="desktops" name="desktops" value="Desktops" [(ngModel)]="selectedCategories['desktops']" (change)="filterProducts()">
-            <label for="checkbox1">Desktops</label>
+          
+           </div>
 
-          </div>
-
-          <ul>
-            <li *ngFor="let product of filteredProducts">{{ product.category }}</li>
-          </ul>
-
-        </div>
+           <div class="categorieslabels">
+            <!-- <label for="allCategories">All Categories</label> -->
+            <label for="phones">Phones</label>
+            <label for="laptops">Laptops</label>
+            <label for="gaming">Gaming</label>
+            <label for="desktops">Desktops</label>
+           </div>
   
+        </div>       
+      
       </form>
     </div>
     <!--=====================================-->

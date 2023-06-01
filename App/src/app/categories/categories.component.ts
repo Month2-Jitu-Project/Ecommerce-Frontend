@@ -14,6 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoriesService } from 'src/services/categories/categories.service';
 import { FormsModule } from '@angular/forms';
 import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
+import { ProductFilterService } from 'src/services/filterproducts/productfilterservice';
+
 
 @Component({
   selector: 'app-categories',
@@ -36,7 +38,8 @@ export class CategoriesComponent {
   filteredProducts: PRODUCT_MODEL[] = [];
 
   // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService,private categoriesService:CategoriesService) { }
+  constructor(private sharedService: SharedService,private categoriesService:CategoriesService,private productFilterService: ProductFilterService) { }
+
 
   filterProducts() {
     const selectedCategories = Object.keys(this.selectedCategories)
@@ -52,9 +55,11 @@ export class CategoriesComponent {
         this.filteredProducts = response.products.filter((product: PRODUCT_MODEL) => {
           return selectedCategories.includes(product.category);
         });
+        this.productFilterService.updateFilteredProducts(this.filteredProducts);
         console.log('Filtered Products',this.filteredProducts)
       } else {
-        this.filteredProducts = [];
+        // this.filteredProducts = [];
+        this.productFilterService.updateFilteredProducts([]);
         console.log('No products found')
       }
 
