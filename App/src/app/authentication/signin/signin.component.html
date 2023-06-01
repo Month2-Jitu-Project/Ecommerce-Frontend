@@ -54,11 +54,10 @@
               Password is required
             </p>
           </div>
-
         </div>
 
         <!-- SIGN IN BUTTON -->
-        <button class="signInBtn" (click)="signIn()">
+        <button class="signInBtn" (click)="signIn()" [ngClass]="{'disabled': !signInForm.valid, 'enabled': signInForm.valid}">
           <fa-icon [icon]="upIcon"></fa-icon>
           Sign In
         </button>
@@ -67,9 +66,9 @@
 
     <!-- RESET PASSWORD BUTTON -->
     <button class="forgotPasswordBtn" (click)="setResetPasswordActive()">
-      <fa-icon [icon]="surprisedEmoji"></fa-icon>
+      <fa-icon [icon]="frownEmoji"></fa-icon>
       Forgot Password
     </button>
   </div>
 </div>
-<!--=====================================-->
+<!--============= FORM END ===============-->

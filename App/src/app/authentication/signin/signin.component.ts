@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // IMPORT FONTAWESOME ICONS
-import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceSurprise, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, IconDefinition, faFaceFrown, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 // This service handles the displaying of pop up forms
 import { SharedService } from '../../../services/forms/shared.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
   lockIcon: IconDefinition = faLock;
   closeIcon: IconDefinition = faClose;
   warningIcon: IconDefinition = faExclamationTriangle;
-  surprisedEmoji: IconDefinition = faFaceSurprise;
+  frownEmoji: IconDefinition = faFaceFrown;
 
   // DEFAULT FORM INPUT VALUES
   defaultParams = {

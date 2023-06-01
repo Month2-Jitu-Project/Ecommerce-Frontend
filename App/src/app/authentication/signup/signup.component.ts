@@ -76,6 +76,7 @@ export class SignUpComponent {
     this.sharedService.closeSignUpForm();
   }
 
+  // METHOD FOR SIGNING UP USERS
   signUp() {
     if (this.signUpForm.valid) {
       const newUser: USER_MODEL = this.signUpForm.value;

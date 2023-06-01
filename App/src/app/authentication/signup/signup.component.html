@@ -51,7 +51,7 @@
             class="error-message">
             <p>
               <fa-icon [icon]="warningIcon"></fa-icon>
-              Password must contain 
+              Password must contain
               <br>
               letters, numbers and symbols
             </p>
@@ -159,10 +159,10 @@
               Phone number is required
             </p>
           </div>
-
         </div>
+
         <!-- SIGN UP BUTTON -->
-        <button class="signUpBtn" (click)="signUp()">
+        <button class="signUpBtn" (click)="signUp()" [ngClass]="signUpForm.valid ? 'enabled' : 'disabled'">
           <fa-icon [icon]="upIcon"></fa-icon>
           Sign Up
         </button>
@@ -170,4 +170,4 @@
     </form>
   </div>
 </div>
-<!--=====================================-->
+<!--============== FORM END ================-->
