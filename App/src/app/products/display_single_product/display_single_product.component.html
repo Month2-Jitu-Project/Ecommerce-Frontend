@@ -1,0 +1,29 @@
+<div class="product-container">
+    <div class="img-container">
+        <img src="https://www.digitaltrends.com/wp-content/uploads/2021/07/e6wi5ghuyaahvkt.jpg?fit=720%2C720&p=1"
+            alt="#" class="product-img">
+    </div>
+
+    <div class="product-info">
+        <h2 class="product-name">
+            Steam Deck
+        </h2>
+
+        <p class="product-description">
+            Who it's for: Players looking for console-like performance and selection on the go.
+        </p>
+
+        <h3 class="product-price">
+            {{ 220 | currency }}
+            <span class="previous-price">
+                {{ 220 + 500 | currency }}
+            </span>
+        </h3>
+
+        <!-- ADD TO CART BUTTON -->
+        <button class="add-to-cart-btn">
+            Add to cart
+            <fa-icon [icon]="cartIcon"></fa-icon>
+        </button>
+    </div>
+</div>

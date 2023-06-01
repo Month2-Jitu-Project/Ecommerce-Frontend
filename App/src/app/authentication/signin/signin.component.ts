@@ -10,7 +10,6 @@ import { UserService } from 'src/services/users/users.service';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
@@ -46,7 +45,7 @@ export class SignInComponent implements OnInit {
   };
 
   // INJECT SERVICES & MODULAR SERVICES
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private router: Router, private route: ActivatedRoute, private pageReloaderService: PageReloaderService) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService) { }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({

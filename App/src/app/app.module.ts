@@ -6,18 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 // MAIN APP COMPONENTS
 import { AppComponent } from './app.component';
-import { DisplayProductComponent } from './products/display_product/displayProduct.component';
+import { DisplayProductsComponent } from './products/display_products/display_products.component';
+import { SignInComponent } from './authentication/signin/signin.component';
+import { SignUpComponent } from './authentication/signup/signup.component';
+import { ResetpasswordComponent } from "./authentication/resetpassword/resetpassword.component";
+import { DisplaySingleProductComponent } from './products/display_single_product/display_single_product.component';
+import { CategoriesComponent } from 'src/app/categories/categories.component';
 
 // ADDITIONAL MODULES
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignInComponent } from './authentication/signin/signin.component';
-import { SignUpComponent } from './authentication/signup/signup.component';
-import { ResetpasswordComponent } from "./authentication/resetpassword/resetpassword.component";
-import { RouterModule } from '@angular/router';
-
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -39,7 +38,8 @@ import { RouterModule } from '@angular/router';
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
-        DisplayProductComponent,
+        DisplayProductsComponent,
+        DisplaySingleProductComponent,
         SignInComponent,
         SignUpComponent,
         CategoriesComponent,

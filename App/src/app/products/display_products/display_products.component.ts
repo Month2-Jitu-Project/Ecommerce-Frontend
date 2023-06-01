@@ -12,12 +12,12 @@ import { ProductFilterService } from 'src/services/filterProducts/productFilter.
 // FILE IS A COMPONENT
 @Component({
   selector: 'product', // CUSTOM HTML SELECTOR 
-  templateUrl: 'displayProduct.component.html', // LINK TO HTML 
-  styleUrls: ['displayProduct.component.css'],  // LINK TO CSS  
+  templateUrl: 'display_products.component.html', // LINK TO HTML 
+  styleUrls: ['display_products.component.css'],  // LINK TO CSS  
   standalone: true,
   imports: [CommonModule, FontAwesomeModule,CategoriesComponent]
 })
-export class DisplayProductComponent implements OnInit {
+export class DisplayProductsComponent implements OnInit {
 
   products: any[] = [];
   filteredProducts: PRODUCT_MODEL[] = [];
