@@ -8,11 +8,11 @@ import { Observable, catchError, map } from 'rxjs';
 
 //categories Service to handle api requests
 export class CategoriesService {
-  
-  constructor(private http: HttpClient) {}
-  
+
+  constructor(private http: HttpClient) { }
+
   getFilteredProducts(selectedCategories: string[]): Observable<any> {
-    
+
     // Make a GET request to the API with selected categories
     const url = 'http://localhost:4000/products';
     return this.http.get(url).pipe(
@@ -30,5 +30,5 @@ export class CategoriesService {
         throw error;
       })
     );
-  }  
+  }
 }

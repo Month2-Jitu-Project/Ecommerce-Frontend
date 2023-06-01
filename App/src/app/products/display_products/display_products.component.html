@@ -9,7 +9,7 @@
                 <a class="addToCartBtn btn" (click)="addProductToCart()">
                     <fa-icon [icon]="cartIcon" class="icon"></fa-icon>
                 </a>
-                <a class="deleteBtn btn" (click)="deleteProduct()">
+                <a class="deleteBtn btn" (click)="deleteProduct(product.productId)">
                     <fa-icon [icon]="deleteIcon" class="icon"></fa-icon>
                 </a>
                 <a class="favorites btn" (click)="addToFavorites()">

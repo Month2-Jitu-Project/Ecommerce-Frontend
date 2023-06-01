@@ -42,7 +42,7 @@ export class AddProductComponent {
     };
 
     // INJECT SERVICES & FORM CLASSES
-    constructor(private sharedService: SharedService, private productService: ProductService, private formBuilder: FormBuilder) { }
+    constructor(private sharedService: SharedService, private productService: ProductService, private formBuilder: FormBuilder, private pageReloaderService: PageReloaderService) { }
 
     // LOGIN STATUS
     isSignedIn: boolean = false;
@@ -81,6 +81,11 @@ export class AddProductComponent {
 
             this.productService.createProduct(newProduct, token).subscribe((response: RESPONSE_MODEL) => {
                 console.log(response);
+
+                // RELOAD ROUTE AFTER 1.5s
+                setTimeout(() => {
+                    this.pageReloaderService.refreshRoute();
+                }, 1500);
             },
                 (error: any) => {
                     console.error(error);

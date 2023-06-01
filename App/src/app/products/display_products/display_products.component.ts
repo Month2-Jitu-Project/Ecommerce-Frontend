@@ -16,14 +16,14 @@ import { UserService } from 'src/services/users/users.service';
   templateUrl: 'display_products.component.html', // LINK TO HTML 
   styleUrls: ['display_products.component.css'],  // LINK TO CSS  
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule,CategoriesComponent]
+  imports: [CommonModule, FontAwesomeModule, CategoriesComponent]
 })
 export class DisplayProductsComponent implements OnInit {
 
   products: any[] = [];
-  filteredProducts: PRODUCT_MODEL[] = [];
+  filteredProducts: any[] = [];
 
-  constructor(private productService: ProductService,private productFilterService: ProductFilterService, private userService: UserService) { }
+  constructor(private productService: ProductService, private productFilterService: ProductFilterService, private userService: UserService) { }
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -60,8 +60,13 @@ export class DisplayProductsComponent implements OnInit {
   /////////////////////////////////////
   //// METHOD TO DELETE A PRODUCT /////
   /////////////////////////////////////
-  deleteProduct() {
-    alert('Product deleted!');
+  deleteProduct(productId: string) {
+    this.productService.deleteProduct(productId).subscribe((response) => {
+      console.log(response);
+    },
+      error => {
+        console.error('ERROR:', error);
+      });
   }
 
   ////////////////////////////////////////////
