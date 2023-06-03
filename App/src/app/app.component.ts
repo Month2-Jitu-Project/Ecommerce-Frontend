@@ -4,18 +4,10 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 // IMPORT FONTAWESOME ICONS
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
-// IMPORT ANGULAR FORMS
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
 // SERVICES
 import { SharedService } from '../services/forms/shared.service';
-import { ProductService } from 'src/services/products/products.service';
-import { UserService } from 'src/services/users/users.service';
 
-// MODELS
-import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
-import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
-import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
+import { UserService } from 'src/services/users/users.service';
 import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
@@ -96,6 +88,10 @@ export class AppComponent implements AfterViewInit {
   ///////////////////////////////////////////
   redirectToHomePage() {
     this.messageBoxService.showSuccessMessage('Let\'s see how long it takes for me to disappear');
+  }
+
+  TEST() {
+    this.messageBoxService.showSuccessMessage('Another message');
   }
 
   // METHOD FOR CHECKING IF USER IS AUTHENTICATED

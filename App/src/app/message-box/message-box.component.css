@@ -1,4 +1,5 @@
 .message-box {
+    display: block;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -12,6 +13,7 @@
     opacity: .9;
     box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, .2);
     animation: slide-in-left 1s;
+    transition: .4s all ease;
     pointer-events: none;
 }
 
@@ -29,9 +31,27 @@
     font-size: .7rem;
 }
 
-.hidden {
-    animation: slide-out-left 1s;
+/* VISIBLE STATES */
+.visible {
+    animation: slide-in-left 1s;
 }
+
+.slide-out {
+    animation: slide-out-left 2s;
+}
+
+.hidden {
+    transform-origin: left;
+    transition: .4s all ease;
+    transform: scale(0);
+}
+
+
+
+
+
+
+
 
 
 /* ANIMATIONS */
