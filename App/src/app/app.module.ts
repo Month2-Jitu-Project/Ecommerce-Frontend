@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './products/add_product/add_product.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -39,6 +40,7 @@ import { AddProductComponent } from './products/add_product/add_product.componen
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
+        MessageBoxComponent,
         AddProductComponent,
         DisplayProductsComponent,
         DisplaySingleProductComponent,

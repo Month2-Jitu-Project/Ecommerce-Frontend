@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject, forkJoin, map } from 'rxjs';
+import { Observable, Subject, catchError, forkJoin, map, throwError } from 'rxjs';
 import { USER_MODEL } from '../../abstract_classes/user.model';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { MessageBoxService } from '../message-box/message-box.service';
+import { PageReloaderService } from '../pageReloader/pageReloader.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +18,7 @@ export class UserService {
     private users: USER_MODEL[] = [];
     private usersSubject: Subject<USER_MODEL[]> = new Subject<USER_MODEL[]>();
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private messageBoxService: MessageBoxService, private pageReloaderService: PageReloaderService) { }
 
     // GET ALL USERS
     getUsers(): Observable<USER_MODEL[]> {
@@ -27,8 +29,8 @@ export class UserService {
         this.getUsers().subscribe(
             (users: USER_MODEL[]) => {
                 this.users = users;
+                // EMIT UPDATED users
                 this.usersSubject.next(this.users);
-                // EMIT UPDATED products
             },
             (error: any) => {
                 console.error('Error fetching users:', error);
@@ -46,6 +48,15 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
+
+        // DISPLAY SUCCESS MESSAGE
+        this.messageBoxService.showSuccessMessage('Sign Up successful!');
+
+        // RELOAD PAGE AFTER 2s
+        setTimeout(() => {
+            this.pageReloaderService.refreshRoute();
+        }, 2000);
+
         return this.http.post<USER_MODEL>(this.BASE_URL + '/users', user, { headers });
     }
 
@@ -54,10 +65,18 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<any>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
+
+        return this.http.post<RESPONSE_MODEL>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
+            // DISPLAY SUCCESS MESSAGE
+            this.messageBoxService.showSuccessMessage('Sign in successful!');
+
             const token = response.token;
             return { response, token } as RESPONSE_MODEL;
-        }));
+        }),
+            catchError((error: any) => {
+                return throwError(error);
+            })
+        );
     }
 
     // RESET | UPDATE USER PASSWORD
@@ -93,7 +112,7 @@ export class UserService {
     ///////////////////////////////
     // CUSTOM PATTERN VALIDATORS //
     ///////////////////////////////
-    
+
     // EMAIL PATTERN VALIDATOR
     EMAIL_PATTERN_VALIDATOR(): ValidatorFn {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

@@ -16,6 +16,7 @@ import { UserService } from 'src/services/users/users.service';
 import { PRODUCT_MODEL } from 'src/abstract_classes/product.model';
 import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -41,15 +42,15 @@ export class AppComponent implements AfterViewInit {
   warningIcon: IconDefinition = faExclamationTriangle;
 
   // INJECT SERVICES & FORM CLASSES
-  constructor(private sharedService: SharedService, private userService: UserService) { }
+  constructor(private sharedService: SharedService, private userService: UserService, private messageBoxService: MessageBoxService) { }
 
-    // LOGIN STATUS
-    isSignedIn: boolean = false;
+  // LOGIN STATUS
+  isSignedIn: boolean = false;
 
-    ngOnInit() {
-        // CHECK LOCAL STORAGE FOR AUTH TOKEN
-        this.isSignedIn = (localStorage.getItem('token') !== null);
-    }
+  ngOnInit() {
+    // CHECK LOCAL STORAGE FOR AUTH TOKEN
+    this.isSignedIn = (localStorage.getItem('token') !== null);
+  }
 
   //////////////////////////////////////////
   //    METHODS TO UPDATE ACTIVE STATE    //
@@ -71,11 +72,18 @@ export class AppComponent implements AfterViewInit {
     // IF isSignedIn IS EQUAL TO true
     // EXECUTE Sign Out LOGIC
     if (this.isSignedIn) {
-      // CLEAR LOCAL STORAGE
-      localStorage.clear();
-      // SET isSignedIn STATE TO false WHEN Sign Out BUTTON IS CLICKED
-      this.isSignedIn = false;
-      // ELSE OPEN SignIn FORM
+      // DISPLAY MESSAGE ON Sign Out 
+      this.messageBoxService.showSuccessMessage('Signing Out...');
+
+      // CLEAR LOCAL STORAGE IN 2s
+      setTimeout(() => {
+        localStorage.clear();
+
+        // SET isSignedIn STATE TO false WHEN Sign Out BUTTON IS CLICKED
+        this.isSignedIn = false;
+      }, 2000);
+
+      // ELSE ONLY OPEN THE SignIn FORM IF THE ABOVE CONDITIONS AREN'T MET
     } else {
       this.sharedService.openSignInForm();
     }

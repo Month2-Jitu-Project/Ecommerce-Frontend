@@ -42,7 +42,7 @@
   <!-- CTA BUTTONS -->
   <div class="cta">
     <!-- SIGN UP BUTTON -->
-    <a class="sign-up-btn" (click)="setSignUpActive()">
+    <a class="sign-up-btn" (click)="setSignUpActive()" *ngIf="!Authenticated()">
       Sign Up
     </a>
     <!-- SIGN IN BUTTON -->
@@ -79,6 +79,9 @@
 
 <!-- RESET PASSWORD FORM -->
 <reset-password></reset-password>
+
+<!-- MESSAGE BOX -->
+<message-box></message-box>
 
 <!-- HERO SECTION -->
 <span class="hero-wrapper">

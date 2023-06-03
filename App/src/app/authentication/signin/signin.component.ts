@@ -90,8 +90,10 @@ export class SignInComponent implements OnInit {
         // SAVE TOKEN TO LOCAL STORAGE
         localStorage.setItem('token', token);
 
-        // RELOAD PAGE ON SIGN IN
-        this.pageReloaderService.refreshRoute();
+        // RELOAD PAGE ON SIGN IN AFTER 2s
+        setTimeout(() => {
+          this.pageReloaderService.refreshRoute();
+        }, 2000);
       },
         (error: any) => {
           console.error(error);
