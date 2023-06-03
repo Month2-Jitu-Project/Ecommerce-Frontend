@@ -41,8 +41,6 @@
 }
 
 .hidden {
-    transform-origin: left;
-    transition: .4s all ease;
     transform: scale(0);
 }
 

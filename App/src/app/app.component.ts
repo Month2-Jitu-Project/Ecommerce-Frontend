@@ -1,5 +1,5 @@
 // THIS IS THE ROOT COMPONENT OF THE APP
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 // IMPORT FONTAWESOME ICONS
 import { faHome, faPlusCircle, faCartShopping, faArrowCircleUp, faLock, faClose, faBagShopping, faEllipsis, IconDefinition, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -90,8 +90,8 @@ export class AppComponent implements AfterViewInit {
     this.messageBoxService.showSuccessMessage('Let\'s see how long it takes for me to disappear');
   }
 
-  TEST() {
-    this.messageBoxService.showSuccessMessage('Another message');
+  WelcomeMessage() {
+    this.messageBoxService.showSuccessMessage('Welcome!');
   }
 
   // METHOD FOR CHECKING IF USER IS AUTHENTICATED

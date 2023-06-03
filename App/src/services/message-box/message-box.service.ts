@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
-export class MessageBoxService {
+export class MessageBoxService { 
     // CREATE NEW SUBJECT INSTANCE
     private successMessageSubject = new Subject<string>();
     private errorMessageSubject = new Subject<string>();
@@ -15,12 +15,10 @@ export class MessageBoxService {
     errorMessage$ = this.errorMessageSubject.asObservable();
 
     showSuccessMessage(message: string): void {
-        this.successMessageSubject.next(message);
-        console.log('Response from service');
-        
+        this.successMessageSubject.next(message);        
     }
 
     showErrorMessage(message: string): void {
         this.errorMessageSubject.next(message);
     }
-}
+}  
