@@ -121,7 +121,7 @@ export class UserService {
 
     // PASSWORD PATTERN VALIDATOR
     PASSWORD_PATTERN_VALIDATOR(): ValidatorFn {
-        const passwordPattern = /^[a-zA-Z0-9!@#]{3,30}$/;
+        const passwordPattern = /^(?=.*[A-Za-z])[A-Za-z\d\S]{8,}$/;
         return Validators.pattern(passwordPattern);
     }
 }

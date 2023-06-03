@@ -1,5 +1,5 @@
 <!-- MESSAGE BOX -->
-<div class="message-box" *ngIf="successMessage">
+<div #messageBox class="message-box" *ngIf="successMessage">
     <div class="icon">
         <fa-icon [icon]="envelopeIcon"></fa-icon>
     </div>
@@ -16,7 +16,7 @@
 </div>
 
 <!-- MESSAGE BOX -->
-<div class="message-box" *ngIf="errorMessage">
+<div #messageBox class="message-box" *ngIf="errorMessage">
     <div class="icon">
         <fa-icon [icon]="envelopeIcon"></fa-icon>
     </div>

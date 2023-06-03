@@ -95,7 +95,7 @@ export class AppComponent implements AfterViewInit {
   /// METHOD TO REDIRECT USER TO HOMEPAGE ///
   ///////////////////////////////////////////
   redirectToHomePage() {
-
+    this.messageBoxService.showSuccessMessage('Let\'s see how long it takes for me to disappear');
   }
 
   // METHOD FOR CHECKING IF USER IS AUTHENTICATED

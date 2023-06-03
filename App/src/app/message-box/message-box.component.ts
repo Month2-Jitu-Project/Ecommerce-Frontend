@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { MessageBoxService } from 'src/services/message-box/message-box.service'
     imports: [CommonModule, FontAwesomeModule]
 })
 export class MessageBoxComponent implements OnInit {
+    isVisible: boolean = false;
     successMessage!: string;
     errorMessage!: string;
     successMessageSubscription!: Subscription;
@@ -20,6 +21,9 @@ export class MessageBoxComponent implements OnInit {
 
     // FONT AWESOME ICONS
     envelopeIcon: IconDefinition = faEnvelope;
+
+    @ViewChild('messageBox', { static: false })
+    messageBox!: ElementRef;
 
     constructor(private messageBoxService: MessageBoxService) { }
 
@@ -30,7 +34,7 @@ export class MessageBoxComponent implements OnInit {
 
         this.errorMessageSubscription = this.messageBoxService.errorMessage$.subscribe(message => {
             this.errorMessage = message;
-        })
+        });
     }
 
     // HANDLE SUBSCRIPTION
@@ -38,4 +42,7 @@ export class MessageBoxComponent implements OnInit {
         this.successMessageSubscription.unsubscribe();
         this.errorMessageSubscription.unsubscribe();
     }
+    
 }
+
+
