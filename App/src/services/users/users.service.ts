@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject, catchError, forkJoin, map, throwError } from 'rxjs';
+import { Observable, Subject, catchError, forkJoin, map, tap, throwError } from 'rxjs';
 import { USER_MODEL } from '../../abstract_classes/user.model';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
@@ -68,12 +68,14 @@ export class UserService {
 
         return this.http.post<RESPONSE_MODEL>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
             // DISPLAY SUCCESS MESSAGE
-            this.messageBoxService.showSuccessMessage('Sign in successful!');
+            this.messageBoxService.showSuccessMessage('Sign in successful, welcome back!');
 
             const token = response.token;
             return { response, token } as RESPONSE_MODEL;
         }),
             catchError((error: any) => {
+                // DISPLAY ERROR MESSAGE
+                this.messageBoxService.showErrorMessage(error.error.message);
                 return throwError(error);
             })
         );
@@ -96,7 +98,15 @@ export class UserService {
         const UPDATE_REQUEST: Observable<{}> = this.http.put(`${this.PASSWORD_RESET_URL}/${email}`, payload);
 
         // RETURN BOTH RESPONSES USING THE forkJoin METHOD
-        return forkJoin([RESET_REQUEST, UPDATE_REQUEST]);
+        return forkJoin([RESET_REQUEST, UPDATE_REQUEST]).pipe(
+            tap(() => {
+                this.messageBoxService.showSuccessMessage('Password reset successful! Redirecting...');
+            }),
+            catchError((error: any) => {
+                this.messageBoxService.showErrorMessage('Failed to reset and update password, please try again...');
+                return throwError(error);
+            })
+        );
     }
 
     // CHECK IF USER IS AUTHENTICATED i.e If they have a VALID token

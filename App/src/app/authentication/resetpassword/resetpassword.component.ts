@@ -78,6 +78,9 @@ export class ResetpasswordComponent {
         // RESET FORM ON FORM SUBMIT & RELOAD ROUTE
         this.resetForm.reset();
 
+        // DISPLAY SUCCESS MESSAGE
+        // this.messageBoxService.showSuccessMessage('Password reset successful!');
+
         // RELOAD PAGE AFTER 2s
         setTimeout(() => {
           this.pageReloaderService.refreshRoute();  
@@ -88,7 +91,7 @@ export class ResetpasswordComponent {
       });
       // HANDLE CASES WHERE FORM IS NOT VALID
     } else {
-      console.error('Pssword reset not successful...');
+      this.messageBoxService.showErrorMessage('Please try again...');
     }
   }
 }
