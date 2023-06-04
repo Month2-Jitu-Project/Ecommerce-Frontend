@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './products/add_product/add_product.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './success/success.component';
+import { CartComponent } from './cart/cart.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -44,9 +47,12 @@ import { MessageBoxComponent } from './message-box/message-box.component';
         AddProductComponent,
         DisplayProductsComponent,
         DisplaySingleProductComponent,
+        CategoriesComponent,
+        CartComponent,
+        PaymentComponent,
+        SuccessComponent,
         SignInComponent,
         SignUpComponent,
-        CategoriesComponent,
         HttpClientModule,
         ReactiveFormsModule,
         ResetpasswordComponent,

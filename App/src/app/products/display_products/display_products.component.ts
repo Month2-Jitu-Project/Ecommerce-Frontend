@@ -37,6 +37,8 @@ export class DisplayProductsComponent implements OnInit {
     this.productService.getStoredProducts().subscribe((products: PRODUCT_MODEL[]) => {
       this.products = products;
       this.filteredProducts = products;
+      console.log(products);
+      
     });
 
     this.productFilterService.filteredProducts$.subscribe(filteredProducts => {
