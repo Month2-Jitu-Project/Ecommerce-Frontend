@@ -59,6 +59,10 @@ export class AppComponent implements AfterViewInit {
     this.sharedService.openSignUpForm();
   }
 
+  setCartActive(): void {
+    this.sharedService.openCart();
+  }
+
   // METHOD TO HANDLE FORM POP UPS
   setSignInActive(): void {
     // IF isSignedIn IS EQUAL TO true

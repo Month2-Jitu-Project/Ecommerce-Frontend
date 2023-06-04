@@ -16,7 +16,7 @@ import { CategoriesComponent } from 'src/app/categories/categories.component';
 // ADDITIONAL MODULES
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './products/add_product/add_product.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -35,7 +35,7 @@ import { CartComponent } from './cart/cart.component';
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [NgModel],
     // THE ENTRY POINT COMPONENT FOR
     // STARTING THE APP
     bootstrap: [AppComponent],

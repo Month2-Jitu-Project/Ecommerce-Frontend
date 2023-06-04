@@ -1,28 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconDefinition, faCartShopping, faPlus, faMinus, faDoorOpen, faTrash, faHandPointRight } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faCartPlus, faDoorOpen, faTrash, faClose, faHandPointRight } from '@fortawesome/free-solid-svg-icons';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CartService } from 'src/services/cart/cart.service';
+import { SharedService } from 'src/services/forms/shared.service';
+import { FormsModule, NgModel } from '@angular/forms';
 
-@Component({
+
+@Component({  
     selector: 'cart',
     templateUrl: 'cart.component.html',
     styleUrls: ['cart.component.css'],
     standalone: true,
-    imports: [CommonModule, FontAwesomeModule, RouterModule, RouterOutlet]
+    imports: [CommonModule, FontAwesomeModule, RouterModule, RouterOutlet, FormsModule],
+    providers: [NgModel]
 })
 export class CartComponent {
+    // SET isActive STATE TO false
+    isActive: boolean = false;
     // FONTAWESOME ICONS
-    cartIcon: IconDefinition = faCartShopping;
-    plusIcon: IconDefinition = faPlus;
-    minusIcon: IconDefinition = faMinus;
+    cartIcon: IconDefinition = faCartPlus;
+    closeIcon: IconDefinition = faClose;
     doorIcon: IconDefinition = faDoorOpen;
     trashIcon: IconDefinition = faTrash;
     handIcon: IconDefinition = faHandPointRight;
 
     // INJECT CartService
-    constructor(private cartService: CartService) { }
+    constructor(public cartService: CartService, private sharedService: SharedService, private ngModel: NgModel) { }
 
-    
+    ngOnInit(): void {
+        this.sharedService.cart$.subscribe(active => {
+            this.isActive = active;
+        });
+
+        this.updateCartTotal();
+    }
+
+    getCartItems() {
+        return this.cartService.getCartItems();
+    }
+
+    // METHOD FOR CLOSING cart
+    closeCart() {
+        this.sharedService.closeCart();
+    }
+
+    getCartTotal(): number {
+        return this.cartService.calculateTotal();
+    }
+
+    // INITIALIZE cartTotal
+    cartTotal: number = 0;
+
+    updateCartTotal(): void {
+        this.cartTotal = this.cartService.calculateTotal();
+    }
+
 }

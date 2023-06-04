@@ -22,11 +22,20 @@
 }
 
 .container {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    z-index: 10;
     background: var(--white);
     width: 35rem;
     box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, .2);
+    transform: scale(0);
     transform-origin: top center;
     transition: .3s all ease;
+}
+
+.active {
+    transform: scale(1);
 }
 
 .cart-header {
@@ -39,6 +48,21 @@
     font-size: 1.1rem;
 }
 
+.close-icon {
+    font-size: 1.7rem;
+    cursor: pointer;
+    clip-path: circle(40% at 50% 50%);
+    padding: .7rem;
+    transition: .4s all ease;
+}
+
+.close-icon:hover {
+    background: var(--white);
+    color: var(--folly);
+    box-shadow: 0 1rem 1rem 0 rgba(0, 0, 0, .1);
+    transform: scale(1.2);
+}
+
 .cart-contents {
     display: flex;
     align-items: center;
@@ -47,6 +71,13 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height: 60vh;
+}
+
+/* STYLING FOR EMPTY CART */
+.empty {
+    padding: 2rem;
+    font-weight: 600;
+    color: #5e5e5e;
 }
 
 .product {
@@ -70,7 +101,6 @@
 }
 
 .product-img {
-    pointer-events: none;
     width: 100px;
     height: 100px;
     object-fit: contain;
@@ -120,7 +150,6 @@ input:focus {
 }
 
 label {
-    pointer-events: none;
     font-size: 1rem;
     font-weight: 600;
     color: var(--folly);
@@ -181,11 +210,7 @@ label {
 
 
 
-.add-product-form {
-    transform: scale(0);
-
-}
-
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
     .sticky {
         right: 15%;
@@ -214,7 +239,7 @@ label {
         border-left: none;
         padding-left: 0;
         padding: 2rem;
-    }    
+    }
 
     label {
         font-size: .8rem;
@@ -238,7 +263,6 @@ label {
 
 
 /* ANIMATIONS */
-
 
 /* 
 *---------------

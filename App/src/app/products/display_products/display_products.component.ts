@@ -9,6 +9,8 @@ import { ProductService } from '../../../services/products/products.service';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
 import { UserService } from 'src/services/users/users.service';
+import { CartService } from 'src/services/cart/cart.service';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -23,7 +25,7 @@ export class DisplayProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
 
-  constructor(private productService: ProductService, private productFilterService: ProductFilterService, private userService: UserService) { }
+  constructor(private productService: ProductService, private productFilterService: ProductFilterService, private userService: UserService, private cartService: CartService, private messageBoxService: MessageBoxService) { }
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -36,9 +38,7 @@ export class DisplayProductsComponent implements OnInit {
     this.productService.fetchProducts();
     this.productService.getStoredProducts().subscribe((products: PRODUCT_MODEL[]) => {
       this.products = products;
-      this.filteredProducts = products;
-      console.log(products);
-      
+      this.filteredProducts = products;   
     });
 
     this.productFilterService.filteredProducts$.subscribe(filteredProducts => {
@@ -55,8 +55,9 @@ export class DisplayProductsComponent implements OnInit {
   ///////////////////////////////////////
   //// METHOD TO ADD PRODUCT TO CART ////
   ///////////////////////////////////////
-  addProductToCart() {
-    alert('Product added to cart!');
+  addProductToCart(product: any) {
+    this.cartService.addToCart(product);
+    this.messageBoxService.showSuccessMessage('Product added to cart!');
   }
 
   /////////////////////////////////////

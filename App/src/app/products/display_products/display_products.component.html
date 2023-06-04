@@ -7,7 +7,7 @@
             <!-- PRODUCT CARD ICONS -->
             <div class="icon-container" *ngIf="Authenticated()">
                 <!-- ADD TO CART ICON -->
-                <a class="addToCartBtn btn" (click)="addProductToCart()">
+                <a class="addToCartBtn btn" (click)="addProductToCart(product)">
                     <fa-icon [icon]="cartIcon" class="icon"></fa-icon>
                 </a>
                 <a class="deleteBtn btn" (click)="deleteProduct(product.productId)">
