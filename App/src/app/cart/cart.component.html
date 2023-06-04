@@ -53,7 +53,7 @@
                     <input type="number" name="quantity" class="quantity" [(ngModel)]="item.quantity"
                         (input)="updateCartTotal()">
 
-                    <button class="delete-btn">
+                    <button class="delete-btn" (click)="deleteCartItem(item)">
                         <fa-icon [icon]="trashIcon"></fa-icon>
                     </button>
                 </div>
@@ -72,7 +72,7 @@
                     </p>
                 </div>
 
-                <button class="checkout-btn">
+                <button class="checkout-btn" (click)="CHECKOUT()">
                     Checkout
                     <fa-icon [icon]="doorIcon"></fa-icon>
                 </button>

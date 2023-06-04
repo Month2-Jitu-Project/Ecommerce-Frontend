@@ -6,6 +6,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CartService } from 'src/services/cart/cart.service';
 import { SharedService } from 'src/services/forms/shared.service';
 import { FormsModule, NgModel } from '@angular/forms';
+import { CART_ITEM_MODEL } from 'src/abstract_classes/product.model';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class CartComponent implements OnInit {
     handIcon: IconDefinition = faHandPointRight;
 
     // INJECT CartService
-    constructor(public cartService: CartService, private sharedService: SharedService, private ngModel: NgModel) { }
+    constructor(public cartService: CartService, private sharedService: SharedService, private ngModel: NgModel, private messageBoxService: MessageBoxService) { }
 
     ngOnInit(): void {
         this.sharedService.cart$.subscribe(active => {
@@ -60,5 +62,32 @@ export class CartComponent implements OnInit {
     // UPDATE CART TOTAL ON QUANTITY CHANGE
     onQuantityChange(): void {
         this.updateCartTotal();
+    }
+
+    // DELETE ITEM FROM CART
+    deleteCartItem(item: CART_ITEM_MODEL): void {
+        this.cartService.deleteItem(item);
+        this.updateCartTotal();
+    }
+
+    // CHECKOUT
+    CHECKOUT() {
+        const orderData = {
+            orderDate: new Date().toLocaleDateString(),
+            totalAmount: this.cartService.calculateTotal()
+        };
+
+        this.cartService.addOrder(orderData).subscribe(
+            response => {
+                // DISPLAY SUCCESS MESSAGE
+                this.messageBoxService.showSuccessMessage('Order placed successfully');
+                console.log('Order placed successfully:', response);
+            },
+            error => {
+                // DISPLAY ERROR MESSAGE
+                this.messageBoxService.showErrorMessage('Error placing order, please try again...');
+                console.error('Error placing order:', error);
+            }
+        )
     }
 }

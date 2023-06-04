@@ -41,6 +41,10 @@
 
   <!-- CTA BUTTONS -->
   <div class="cta">
+    <!-- TOGGLE CART ICON -->
+    <a class="link cart-toggle" (click)="setCartActive()">
+      <fa-icon [icon]="cartIcon"></fa-icon>
+    </a>
     <!-- SIGN UP BUTTON -->
     <a class="sign-up-btn" (click)="setSignUpActive()" *ngIf="!Authenticated()">
       Sign Up
@@ -54,6 +58,10 @@
 
   <!-- MOBILE ACTIONS -->
   <div class="mobile-actions">
+    <!-- TOGGLE CART -->
+    <a class="cart-icon" (click)="setCartActive()">
+      <fa-icon [icon]="cartIcon"></fa-icon>
+    </a>
     <!-- TOGGLE ADD PRODUCT FORM -->
     <a class="plus-icon" *ngIf="Authenticated()">
       <fa-icon [icon]="plusIcon" (click)="setAddProductFormActive()"></fa-icon>

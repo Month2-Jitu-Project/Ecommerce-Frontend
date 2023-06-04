@@ -103,6 +103,7 @@ header {
     display: none;
 }
 
+.cart-icon,
 .plus-icon,
 .ellipsis-icon {
     color: var(--folly);
@@ -120,6 +121,10 @@ header {
     display: flex;
     align-items: center;
     gap: 2rem;
+}
+
+.cart-toggle {
+    display: none;
 }
 
 .sign-up-btn,
@@ -609,6 +614,10 @@ header {
 
     .nav-links {
         display: none;
+    }
+
+    .cart-toggle {
+        display: block;
     }
 
     .hero {
