@@ -8,7 +8,7 @@ import { SharedService } from 'src/services/forms/shared.service';
 import { FormsModule, NgModel } from '@angular/forms';
 
 
-@Component({  
+@Component({
     selector: 'cart',
     templateUrl: 'cart.component.html',
     styleUrls: ['cart.component.css'],
@@ -16,7 +16,7 @@ import { FormsModule, NgModel } from '@angular/forms';
     imports: [CommonModule, FontAwesomeModule, RouterModule, RouterOutlet, FormsModule],
     providers: [NgModel]
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
     // SET isActive STATE TO false
     isActive: boolean = false;
     // FONTAWESOME ICONS
@@ -33,8 +33,6 @@ export class CartComponent {
         this.sharedService.cart$.subscribe(active => {
             this.isActive = active;
         });
-
-        this.updateCartTotal();
     }
 
     getCartItems() {
@@ -46,6 +44,7 @@ export class CartComponent {
         this.sharedService.closeCart();
     }
 
+    // GET CART TOTAL
     getCartTotal(): number {
         return this.cartService.calculateTotal();
     }
@@ -53,8 +52,13 @@ export class CartComponent {
     // INITIALIZE cartTotal
     cartTotal: number = 0;
 
+    // UPDATE VALUE OF cartTotal FROM 0 
     updateCartTotal(): void {
-        this.cartTotal = this.cartService.calculateTotal();
+        this.cartTotal = this.getCartTotal();
     }
 
+    // UPDATE CART TOTAL ON QUANTITY CHANGE
+    onQuantityChange(): void {
+        this.updateCartTotal();
+    }
 }

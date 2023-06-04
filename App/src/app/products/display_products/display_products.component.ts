@@ -38,7 +38,7 @@ export class DisplayProductsComponent implements OnInit {
     this.productService.fetchProducts();
     this.productService.getStoredProducts().subscribe((products: PRODUCT_MODEL[]) => {
       this.products = products;
-      this.filteredProducts = products;   
+      this.filteredProducts = products;
     });
 
     this.productFilterService.filteredProducts$.subscribe(filteredProducts => {
@@ -65,6 +65,7 @@ export class DisplayProductsComponent implements OnInit {
   /////////////////////////////////////
   deleteProduct(productId: string) {
     this.productService.deleteProduct(productId).subscribe((response) => {
+      this.messageBoxService.showSuccessMessage('Product deleted!');
       console.log(response);
     },
       error => {
@@ -76,6 +77,6 @@ export class DisplayProductsComponent implements OnInit {
   //// METHOD TO ADD PRODUCT TO FAVORITES ////
   ////////////////////////////////////////////
   addToFavorites() {
-    alert('Product added to favorites!');
+    this.messageBoxService.showSuccessMessage('Product added to favorites!');
   }
 }

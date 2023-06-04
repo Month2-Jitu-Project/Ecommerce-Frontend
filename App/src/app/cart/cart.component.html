@@ -35,7 +35,6 @@
                             </p>
                         </div>
 
-
                         <div class="product-description">
                             <p>
                                 {{ item.productDescription }}
@@ -51,7 +50,8 @@
                     </label>
 
                     <!-- QUANTIY INPUT -->
-                    <input type="number" name="quantity" class="quantity" [(ngModel)]="item.quantity" (input)="updateCartTotal()">
+                    <input type="number" name="quantity" class="quantity" [(ngModel)]="item.quantity"
+                        (input)="updateCartTotal()">
 
                     <button class="delete-btn">
                         <fa-icon [icon]="trashIcon"></fa-icon>
@@ -68,7 +68,7 @@
                     </h2>
 
                     <p class="amount">
-                        {{ cartTotal | currency}}
+                        {{ getCartTotal() | currency}}
                     </p>
                 </div>
 
@@ -87,4 +87,3 @@
 
     </div>
 </div>
-

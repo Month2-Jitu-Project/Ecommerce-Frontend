@@ -84,8 +84,6 @@ export class SignUpComponent {
 
       this.userService.createUser(newUser).subscribe((response: any) => {
         console.log(response);
-
-        
       },
         (error: any) => {
           console.error(error);
