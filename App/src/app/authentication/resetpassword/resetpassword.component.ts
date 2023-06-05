@@ -18,6 +18,7 @@ import { SharedService } from 'src/services/forms/shared.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { UserService } from 'src/services/users/users.service';
 import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 @Component({
   selector: 'reset-password',
@@ -48,7 +49,7 @@ export class ResetpasswordComponent {
   };
 
   // INJECT SHARED SERVICE
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService, private messageBoxService: MessageBoxService) { }
 
   ngOnInit(): void {
     // CREATE FORM
@@ -76,16 +77,21 @@ export class ResetpasswordComponent {
       this.userService.resetUserPassword(this.resetForm).subscribe((response) => {
         // RESET FORM ON FORM SUBMIT & RELOAD ROUTE
         this.resetForm.reset();
-        this.pageReloaderService.refreshRoute();
+
+        // DISPLAY SUCCESS MESSAGE
+        // this.messageBoxService.showSuccessMessage('Password reset successful!');
+
+        // RELOAD PAGE AFTER 2s
+        setTimeout(() => {
+          this.pageReloaderService.refreshRoute();  
+        }, 2000);
+        
+        // LOG TO CONSOLE FOR DEBUGGING
         console.log(response);
-      },
-        (error) => {
-          console.error(`ERROR : ${error}`);
-        }
-      );
+      });
       // HANDLE CASES WHERE FORM IS NOT VALID
     } else {
-      console.error('Pssword reset not successful...');
+      this.messageBoxService.showErrorMessage('Please try again...');
     }
   }
 }

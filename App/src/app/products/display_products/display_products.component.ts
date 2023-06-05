@@ -9,7 +9,12 @@ import { ProductService } from '../../../services/products/products.service';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
 import { UserService } from 'src/services/users/users.service';
+<<<<<<< HEAD
 import { DisplaySingleProductComponent } from "../display_single_product/display_single_product.component";
+=======
+import { CartService } from 'src/services/cart/cart.service';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
+>>>>>>> f8b0963687e6cf4e82cddce7f7c2cf6233435baf
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
@@ -24,7 +29,7 @@ export class DisplayProductsComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
 
-  constructor(private productService: ProductService, private productFilterService: ProductFilterService, private userService: UserService) { }
+  constructor(private productService: ProductService, private productFilterService: ProductFilterService, private userService: UserService, private cartService: CartService, private messageBoxService: MessageBoxService) { }
 
   // FONT AWESOME ICONS
   plusIcon = faPlus;
@@ -54,8 +59,9 @@ export class DisplayProductsComponent implements OnInit {
   ///////////////////////////////////////
   //// METHOD TO ADD PRODUCT TO CART ////
   ///////////////////////////////////////
-  addProductToCart() {
-    alert('Product added to cart!');
+  addProductToCart(product: any) {
+    this.cartService.addToCart(product);
+    this.messageBoxService.showSuccessMessage('Product added to cart!');
   }
 
   /////////////////////////////////////
@@ -63,6 +69,7 @@ export class DisplayProductsComponent implements OnInit {
   /////////////////////////////////////
   deleteProduct(productId: string) {
     this.productService.deleteProduct(productId).subscribe((response) => {
+      this.messageBoxService.showSuccessMessage('Product deleted!');
       console.log(response);
     },
       error => {
@@ -74,7 +81,7 @@ export class DisplayProductsComponent implements OnInit {
   //// METHOD TO ADD PRODUCT TO FAVORITES ////
   ////////////////////////////////////////////
   addToFavorites() {
-    alert('Product added to favorites!');
+    this.messageBoxService.showSuccessMessage('Product added to favorites!');
   }
 
   selectedProduct: any; // Initialize as null or empty object

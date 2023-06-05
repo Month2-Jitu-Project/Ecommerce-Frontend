@@ -11,6 +11,7 @@ import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 import { Component, OnInit } from '@angular/core';
 import { PageReloaderService } from 'src/services/pageReloader/pageReloader.service';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -45,7 +46,7 @@ export class SignInComponent implements OnInit {
   };
 
   // INJECT SERVICES & MODULAR SERVICES
-  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService) { }
+  constructor(private sharedService: SharedService, private formBuilder: FormBuilder, private userService: UserService, private pageReloaderService: PageReloaderService, private messageBoxService: MessageBoxService) { }
 
   ngOnInit(): void {
     this.signInForm = this.formBuilder.group({
@@ -61,10 +62,6 @@ export class SignInComponent implements OnInit {
   // PROPERTY TO HOLD ACTIVE STATE
   setResetPasswordActive(): void {
     this.sharedService.openResetPasswordForm();
-  }
-
-  ngAfterViewInit() {
-
   }
 
   closeSignInForm() {
@@ -85,17 +82,14 @@ export class SignInComponent implements OnInit {
         // RETRIEVE TOKEN FROM REQUEST
         const token = signInResponse.token;
 
-        // DISPLAY SUCCESS STATE TO THE UI
-
         // SAVE TOKEN TO LOCAL STORAGE
         localStorage.setItem('token', token);
 
-        // RELOAD PAGE ON SIGN IN
-        this.pageReloaderService.refreshRoute();
-      },
-        (error: any) => {
-          console.error(error);
-        });
+        // RELOAD PAGE ON SIGN IN AFTER 2s
+        setTimeout(() => {
+          this.pageReloaderService.refreshRoute();
+        }, 2000);
+      });
     }
   }
 }

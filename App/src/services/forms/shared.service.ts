@@ -22,6 +22,9 @@ export class SharedService {
   private categoriesFormSubject = new Subject<boolean>();
   categoriesForm$ = this.categoriesFormSubject.asObservable();
 
+  private cartSubject = new Subject<boolean>();
+  cart$ = this.cartSubject.asObservable();
+
   private resetPasswordFormSubject = new Subject<boolean>();
   resetPasswordForm$ = this.resetPasswordFormSubject.asObservable();
 
@@ -34,6 +37,7 @@ export class SharedService {
     this.resetPasswordFormSubject.next(false);
     this.categoriesFormSubject.next(false);
     this.addProductFormSubject.next(false);
+    this.cartSubject.next(false);
   }
 
   openSignUpForm(): void {
@@ -42,6 +46,7 @@ export class SharedService {
     this.resetPasswordFormSubject.next(false);
     this.categoriesFormSubject.next(false);
     this.addProductFormSubject.next(false);
+    this.cartSubject.next(false);
   }
 
   openCategoriesForm(): void {
@@ -49,6 +54,7 @@ export class SharedService {
     this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(true);
     this.addProductFormSubject.next(false);
+    this.cartSubject.next(false);
   }
 
   openResetPasswordForm(): void {
@@ -57,6 +63,7 @@ export class SharedService {
     this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(false);
     this.addProductFormSubject.next(false);
+    this.cartSubject.next(false);
   }
 
   openAddProductForm(): void {
@@ -65,6 +72,16 @@ export class SharedService {
     this.signUpFormSubject.next(false);
     this.categoriesFormSubject.next(false);
     this.addProductFormSubject.next(true);
+    this.cartSubject.next(false);
+  }
+
+  openCart(): void {
+    this.resetPasswordFormSubject.next(false);
+    this.signInFormSubject.next(false);
+    this.signUpFormSubject.next(false);
+    this.categoriesFormSubject.next(false);
+    this.addProductFormSubject.next(false);
+    this.cartSubject.next(true);
   }
 
   //////////////////////////////
@@ -76,7 +93,6 @@ export class SharedService {
   }
 
   closeSignUpForm(): void {
-    this.signInFormSubject.next(false);
     this.signUpFormSubject.next(false);
   }
 
@@ -90,5 +106,9 @@ export class SharedService {
 
   closeAddProductForm(): void {
     this.addProductFormSubject.next(false);
+  }
+
+  closeCart(): void {
+    this.cartSubject.next(false);
   }
 }

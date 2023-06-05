@@ -1,7 +1,7 @@
 <!-- POP UP FORM -->
 <div class="sticky">
     <!-- sticky ELEMENT: make element "stick" to a specific position on the screen as the user scrolls -->
-    <div class="form-container add-product-form" [ngClass]="{ active: isActive }">
+    <div class="form-container add-product-form" [class.active]="isActive">
 
         <!-- ADD PRODUCT FORM -->
         <form [formGroup]="productForm" class="product-form">

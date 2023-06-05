@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject, forkJoin, map } from 'rxjs';
+import { Observable, Subject, catchError, forkJoin, map, tap, throwError } from 'rxjs';
 import { USER_MODEL } from '../../abstract_classes/user.model';
 import { LOGIN_MODEL } from 'src/abstract_classes/login.model';
 import { RESPONSE_MODEL } from 'src/abstract_classes/response.model';
 import { FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { MessageBoxService } from '../message-box/message-box.service';
+import { PageReloaderService } from '../pageReloader/pageReloader.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +18,7 @@ export class UserService {
     private users: USER_MODEL[] = [];
     private usersSubject: Subject<USER_MODEL[]> = new Subject<USER_MODEL[]>();
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private messageBoxService: MessageBoxService, private pageReloaderService: PageReloaderService) { }
 
     // GET ALL USERS
     getUsers(): Observable<USER_MODEL[]> {
@@ -27,8 +29,8 @@ export class UserService {
         this.getUsers().subscribe(
             (users: USER_MODEL[]) => {
                 this.users = users;
+                // EMIT UPDATED users
                 this.usersSubject.next(this.users);
-                // EMIT UPDATED products
             },
             (error: any) => {
                 console.error('Error fetching users:', error);
@@ -46,6 +48,15 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
+
+        // DISPLAY SUCCESS MESSAGE
+        this.messageBoxService.showSuccessMessage('Sign Up successful!');
+
+        // RELOAD PAGE AFTER 2s
+        setTimeout(() => {
+            this.pageReloaderService.refreshRoute();
+        }, 2000);
+
         return this.http.post<USER_MODEL>(this.BASE_URL + '/users', user, { headers });
     }
 
@@ -54,10 +65,20 @@ export class UserService {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-        return this.http.post<any>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
+
+        return this.http.post<RESPONSE_MODEL>(this.BASE_URL + '/users/login', user, { headers }).pipe(map(response => {
+            // DISPLAY SUCCESS MESSAGE
+            this.messageBoxService.showSuccessMessage('Sign in successful, welcome back!');
+
             const token = response.token;
             return { response, token } as RESPONSE_MODEL;
-        }));
+        }),
+            catchError((error: any) => {
+                // DISPLAY ERROR MESSAGE
+                this.messageBoxService.showErrorMessage(error.error.message);
+                return throwError(error);
+            })
+        );
     }
 
     // RESET | UPDATE USER PASSWORD
@@ -77,7 +98,15 @@ export class UserService {
         const UPDATE_REQUEST: Observable<{}> = this.http.put(`${this.PASSWORD_RESET_URL}/${email}`, payload);
 
         // RETURN BOTH RESPONSES USING THE forkJoin METHOD
-        return forkJoin([RESET_REQUEST, UPDATE_REQUEST]);
+        return forkJoin([RESET_REQUEST, UPDATE_REQUEST]).pipe(
+            tap(() => {
+                this.messageBoxService.showSuccessMessage('Password reset successful! Redirecting...');
+            }),
+            catchError((error: any) => {
+                this.messageBoxService.showErrorMessage('Failed to reset and update password, please try again...');
+                return throwError(error);
+            })
+        );
     }
 
     // CHECK IF USER IS AUTHENTICATED i.e If they have a VALID token
@@ -93,7 +122,7 @@ export class UserService {
     ///////////////////////////////
     // CUSTOM PATTERN VALIDATORS //
     ///////////////////////////////
-    
+
     // EMAIL PATTERN VALIDATOR
     EMAIL_PATTERN_VALIDATOR(): ValidatorFn {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -102,7 +131,7 @@ export class UserService {
 
     // PASSWORD PATTERN VALIDATOR
     PASSWORD_PATTERN_VALIDATOR(): ValidatorFn {
-        const passwordPattern = /^[a-zA-Z0-9!@#]{3,30}$/;
+        const passwordPattern = /^(?=.*[A-Za-z])[A-Za-z\d\S]{8,}$/;
         return Validators.pattern(passwordPattern);
     }
 }

@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { SharedService } from '../../../services/forms/shared.service';
 import { USER_MODEL } from 'src/abstract_classes/user.model';
 import { UserService } from 'src/services/users/users.service';
+import { MessageBoxService } from 'src/services/message-box/message-box.service';
 
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
@@ -51,7 +52,7 @@ export class SignUpComponent {
   };
 
   // INJECT SHARED SERVICE & FORM CLASSES
-  constructor(private sharedService: SharedService, private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private sharedService: SharedService, private userService: UserService, private formBuilder: FormBuilder, private messageBoxService: MessageBoxService) { }
 
   ngOnInit() {
     // CREATE FORM

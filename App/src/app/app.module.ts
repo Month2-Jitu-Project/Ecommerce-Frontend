@@ -16,8 +16,12 @@ import { CategoriesComponent } from 'src/app/categories/categories.component';
 // ADDITIONAL MODULES
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './products/add_product/add_product.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './success/success.component';
+import { CartComponent } from './cart/cart.component';
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -31,7 +35,7 @@ import { AddProductComponent } from './products/add_product/add_product.componen
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [NgModel],
     // THE ENTRY POINT COMPONENT FOR
     // STARTING THE APP
     bootstrap: [AppComponent],
@@ -39,12 +43,16 @@ import { AddProductComponent } from './products/add_product/add_product.componen
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
+        MessageBoxComponent,
         AddProductComponent,
         DisplayProductsComponent,
         DisplaySingleProductComponent,
+        CategoriesComponent,
+        CartComponent,
+        PaymentComponent,
+        SuccessComponent,
         SignInComponent,
         SignUpComponent,
-        CategoriesComponent,
         HttpClientModule,
         ReactiveFormsModule,
         ResetpasswordComponent,

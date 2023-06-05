@@ -16,3 +16,15 @@ export class EXTENDED_PRODUCT_MODEL {
     category!: string;
     price!: number;
 }
+
+// EXPORT EXTENDED_PRODUCT MODEL
+export class CART_ITEM_MODEL {
+    productId!: string;
+    productName!: string;
+    productImage!: string;
+    productDescription!: string;
+    category!: string;
+    price!: number;
+    quantity!: number;
+}
+

@@ -1,12 +1,14 @@
 <!-- PRODUCT CONTAINER -->
 <div class="product-container">
-    <div class="product" *ngFor="let product of filteredProducts" >
-    
+    <div class="product" *ngFor="let product of filteredProducts">
+
         <div class="img-container">
-            <img loading="lazy" draggable="false" src="{{ product.productImage }}" alt="product image" class="product-img">
+            <img loading="lazy" draggable="false" src="{{ product.productImage }}" alt="product image"
+                class="product-img">
             <!-- PRODUCT CARD ICONS -->
             <div class="icon-container" *ngIf="Authenticated()">
-                <a class="addToCartBtn btn" (click)="addProductToCart()">
+                <!-- ADD TO CART ICON -->
+                <a class="addToCartBtn btn" (click)="addProductToCart(product)">
                     <fa-icon [icon]="cartIcon" class="icon"></fa-icon>
                 </a>
                 <a class="deleteBtn btn" (click)="deleteProduct(product.productId)">

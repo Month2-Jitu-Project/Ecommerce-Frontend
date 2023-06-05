@@ -79,15 +79,16 @@
     align-items: center;
     justify-content: space-between;
     background: var(--folly);
-    border-radius: 0 21px 21px 21px;
+    border-radius: 0 9px 9px 9px;
     padding: 0 1rem 0 2rem;
+    cursor: pointer;
     transition: .4s all ease;
 }
 
 .categories-form .input-wrp:hover {
     cursor: pointer;
-    animation: wobble-hor-bottom 1s;
-    box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .categories-form input:focus {
@@ -294,5 +295,20 @@
 
     100% {
         border-bottom: 1px solid #F73859ff;
+    }
+}
+
+
+/* MEDIA QUERIES */
+/* MEDIA QUERIES */
+@media (max-width: 425px) {
+
+    .sticky {
+        top: 5%;
+        right: 5%;
+    }
+
+    .categories-form {
+        width: 19rem;
     }
 }
