@@ -9,16 +9,20 @@ import { ProductService } from '../../../services/products/products.service';
 import { CategoriesComponent } from 'src/app/categories/categories.component';
 import { ProductFilterService } from 'src/services/filterProducts/productFilter.service';
 import { UserService } from 'src/services/users/users.service';
+<<<<<<< HEAD
+import { DisplaySingleProductComponent } from "../display_single_product/display_single_product.component";
+=======
 import { CartService } from 'src/services/cart/cart.service';
 import { MessageBoxService } from 'src/services/message-box/message-box.service';
+>>>>>>> f8b0963687e6cf4e82cddce7f7c2cf6233435baf
 // THE @Component DECORATOR INDICATES THAT THIS
 // FILE IS A COMPONENT
 @Component({
-  selector: 'product', // CUSTOM HTML SELECTOR 
-  templateUrl: 'display_products.component.html', // LINK TO HTML 
-  styleUrls: ['display_products.component.css'],  // LINK TO CSS  
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, CategoriesComponent]
+    selector: 'product',
+    templateUrl: 'display_products.component.html',
+    styleUrls: ['display_products.component.css'],
+    standalone: true,
+    imports: [CommonModule, FontAwesomeModule, CategoriesComponent, DisplaySingleProductComponent]
 })
 export class DisplayProductsComponent implements OnInit {
 
@@ -79,4 +83,15 @@ export class DisplayProductsComponent implements OnInit {
   addToFavorites() {
     this.messageBoxService.showSuccessMessage('Product added to favorites!');
   }
+
+  selectedProduct: any; // Initialize as null or empty object
+
+  showProductDetails(product: any) {
+    this.selectedProduct = product;
+  }
+
+  closeProduct(): void {
+    this.selectedProduct = null;
+  }
+
 }

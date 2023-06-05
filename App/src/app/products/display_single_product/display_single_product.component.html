@@ -1,29 +1,19 @@
-<div class="product-container">
+<!-- display-single-product.component.html -->
+<div class="single-product-container">
+  <div class="single-product">
+    <button class="close-button" (click)="closeProduct()">Close</button>
+
     <div class="img-container">
-        <img src="https://www.digitaltrends.com/wp-content/uploads/2021/07/e6wi5ghuyaahvkt.jpg?fit=720%2C720&p=1"
-            alt="#" class="product-img">
+      <img loading="lazy" draggable="false" src="{{ product.productImage }}" alt="product image" class="product-img">
     </div>
 
-    <div class="product-info">
-        <h2 class="product-name">
-            Steam Deck
-        </h2>
+    <div class="product-details">
+      <h2 class="product-title">{{ product.productName }}</h2>
 
-        <p class="product-description">
-            Who it's for: Players looking for console-like performance and selection on the go.
-        </p>
+      <!-- Add more details about the product -->
+      <p class="product-description">{{ product.productDescription }}</p>
 
-        <h3 class="product-price">
-            {{ 220 | currency }}
-            <span class="previous-price">
-                {{ 220 + 500 | currency }}
-            </span>
-        </h3>
-
-        <!-- ADD TO CART BUTTON -->
-        <button class="add-to-cart-btn">
-            Add to cart
-            <fa-icon [icon]="cartIcon"></fa-icon>
-        </button>
+      <h3 class="product-price">{{ product.price | currency }}</h3>
     </div>
+  </div>
 </div>
